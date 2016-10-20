@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Backend Capstone project for Nashville Software School",
   "main": "index.js",
+  "engines": {
+    "node": "6"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -19,9 +23,13 @@
   "homepage": "https://github.com/DominicSerranoC14/Backend-Capstone#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "connect-redis": "^3.1.0",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
     "mongoose": "^4.6.4",
     "socket.io": "^1.5.0"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9"
   }
 }
