@@ -2,9 +2,9 @@
 
 const { Router } = require('express');
 const router = Router();
-const root = require('../controllers/rootCtrl.js');
+const { loginExistingUser } = require('../controllers/loginCtrl.js');
 /////////////////////////////////////////
 
-router.get('/api/feed', root);
+router.post('/api/user/login', loginExistingUser);
 
 module.exports = router;

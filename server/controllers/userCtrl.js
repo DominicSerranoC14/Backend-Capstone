@@ -10,7 +10,7 @@ const getUserProfile = (req, res) => {
 };
 
 const editUserProfile = (req, res) => {
-  console.log(req.body);
+  console.log('User edit route ResJSON', req.body);
 };
 
 module.exports = { getUserProfile, editUserProfile };

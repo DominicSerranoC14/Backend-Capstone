@@ -5,8 +5,8 @@ const router = Router();
 const { getUserProfile, editUserProfile } = require('../controllers/userCtrl.js');
 /////////////////////////////////////////
 
-router.get('/user', getUserProfile);
-router.post('/user', editUserProfile);
+router.get('/api/user', getUserProfile);
+router.post('/api/user', editUserProfile);
 
 /////////////////////////////////////////
 module.exports = router;
