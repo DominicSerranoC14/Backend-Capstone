@@ -1,0 +1,35 @@
+{
+  "name": "Backend-Capstone",
+  "version": "1.0.0",
+  "description": "Backend Capstone project for Nashville Software School",
+  "main": "index.js",
+  "engines": {
+    "node": "6"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DominicSerranoC14/Backend-Capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DominicSerranoC14/Backend-Capstone/issues"
+  },
+  "homepage": "https://github.com/DominicSerranoC14/Backend-Capstone#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-redis": "^3.1.0",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "mongoose": "^4.6.4",
+    "socket.io": "^1.5.0"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9"
+  }
+}
