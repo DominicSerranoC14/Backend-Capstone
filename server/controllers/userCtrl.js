@@ -1,11 +1,20 @@
 'use strict';
 
+const User = require('../models/User.js');
+/////////////////////////////////////////
+
 //User profile routes for user info and updating
 const getUserProfile = (req, res) => {
-  res.send({'user': {
-    'name': 'Greg',
-    'age': '400'
-  }
+  const userSearchParams = req.params.id;
+
+  User
+  .findOne({ email: userSearchParams })
+  .then((userObject) => {
+    if (userObject) {
+      res.send(userObject);
+    } else {
+      res.send({ msg: 'No user found in database' })
+    }
   });
 };
 
