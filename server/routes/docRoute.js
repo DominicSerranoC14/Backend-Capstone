@@ -2,9 +2,10 @@
 
 const { Router } = require('express');
 const router = Router();
-const root = require('../controllers/rootCtrl.js');
+const { getApiDocRef } = require('../controllers/docCtrl.js');
 /////////////////////////////////////////
 
-router.get('/api/feed', root);
+router.get('/api/doc', getApiDocRef);
 
+/////////////////////////////////////////
 module.exports = router;
