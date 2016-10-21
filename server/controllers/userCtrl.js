@@ -21,7 +21,7 @@ const getUserProfile = (req, res) => {
 // POST user obj to DB, will use to send new users and to update user docs
 const editUserProfile = ({ body }, res) => {
   User
-  .findOneAndUpdate({"email": body.email}, body, { returnNewDocument: true })
+  .findOneAndUpdate({"email": body.email}, body)
   .then((updatedUser) => {
     res.send({ msg: `Updated User ${body.userName}` });
   });

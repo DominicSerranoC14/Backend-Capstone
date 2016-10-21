@@ -8,22 +8,75 @@
     },
 
     { "USER ROUTES": [
-      { "Route": "/api/user/:id", "Params": "email / *** username", "Method": "GET / POST", "Data": "User profile info" },
-      { "Route": "/api/user/login", "Params": "--", "Method": "POST", "Data": "User login credentials" },
-      { "Route": "/api/user/register", "Params": "--", "Method": "POST", "Data": "New user document" }
+      {
+        "Route": "/api/user/:id",
+        "Params": "email / *** username", "Method": "GET / POST",
+        "Data": "User profile info"
+      },
+      {
+        "Route": "/api/user/login",
+        "Params": "--",
+        "Method": "POST",
+        "Data": "User login credentials"
+      },
+      {
+        "Route": "/api/user/register",
+        "Params": "--",
+        "Method": "POST",
+        "Data": "New user document"
+      }
     ]},
 
     { "USER POST ROUTES": [
-      { "Route": "/api/post/new", "Params": "--", "Method": "POST", "Data": "New post document" },
-      { "Route": "/api/post/:id", "Params": "Post ID", "Method": "GET / POST", "Data": "Post document" },
-      { "Route": "/api/feed/:id", "Params": "Username / User ID", "Method": "GET", "Data": "Returns specified users home feed" },
-      { "Route": "/api/feed/all", "Params": "--", "Method": "GET", "Data": "Returns all post documents" }
+      {
+        "Route": "/api/post/new",
+        "Params": "--",
+        "Method": "POST",
+        "Data": "New post document"
+      },
+      {
+        "Route": "/api/post/:id",
+        "Params": "Post ID",
+        "Method": "GET / POST",
+        "Data": "Post document"
+      },
+      {
+        "Route": "/api/feed/:id",
+        "Params": "Username / User ID",
+        "Method": "GET",
+        "Data": "Returns specified users home feed"
+      },
+      {
+        "Route": "/api/feed/all",
+        "Params": "--",
+        "Method": "GET",
+        "Data": "Returns all post documents"
+      }
     ]},
 
     { "USER IMAGE ROUTES": [
-      { "Route": "/api/image/:id", "Params": "Image ID", "Method": "GET / POST", "Data": "Returns an image document" },
-      { "Route": "/api/image/all/:id", "Params": "Username / User ID", "Method": "GET", "Data": "Returns all images of a single specified user" },
-      { "Route": "/api/image/all", "Params": "--", "Method": "GET", "Data": "Returns all image documents" }
+      { "Route": "/api/image/new",
+        "Params": "Image ID",
+        "Method": "POST",
+        "Data": "Creates a new image document" },
+      {
+        "Route": "/api/image/:id",
+        "Params": "Image ID",
+        "Method": "GET / POST",
+        "Data": "Returns an image document"
+      },
+      {
+        "Route": "/api/image/all/:id",
+        "Params": "Username / User ID",
+        "Method": "GET",
+        "Data": "Returns all images of a single specified user"
+      },
+      {
+        "Route": "/api/image/all",
+        "Params": "--",
+        "Method": "GET",
+        "Data": "Returns all image documents"
+      }
     ]}
   ]
 }

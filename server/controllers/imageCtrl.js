@@ -12,13 +12,20 @@ const getEntireImageCollection = (req, res) => {
     ]
   });
 };
+// process.on('unhandledRejection', (reason) => {
+//   console.log('Reason: ' + reason);
+// });
 
-const getSpecificImage = (req, res) => {
-  let id = req.params.id;
-  console.log('Specific Img', req.params);
-  res.send({
-    'imageid': '098',
-    'user': `${id}`
+const getSpecificImage = ({ params: { id }}, res) => {
+  Image
+  .findOne({ "_id": id })
+  .then((imageObj) => {
+    if (imageObj) {
+      res.send({msg: 'Image found', imageObj});
+    }
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No image found'});
   });
 };
 
@@ -36,6 +43,9 @@ const createNewImage = ({ body }, res) => {
     } else {
       res.send({ msg: 'Image was not created.' });
     }
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: Image could not be created'});
   });
 };
 
