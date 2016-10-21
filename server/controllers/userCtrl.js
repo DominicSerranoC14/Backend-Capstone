@@ -18,8 +18,17 @@ const getUserProfile = (req, res) => {
   });
 };
 
-const editUserProfile = (req, res) => {
-  console.log('User edit route ResJSON', req.body);
+const editUserProfile = ({ body: { email, userName, password } }, res) => {
+
+
+  // console.log('User edit route ResJSON', req.params);
+  console.log('User edit route ResJSON', email, userName, password);
+
+  User
+  .create({ "email": email, "userName": userName, "password": password })
+  .then((status) => {
+    res.send({ msg: `Account created for userName: ${userName} at  email: ${email}`});
+  });
 };
 
 module.exports = { getUserProfile, editUserProfile };
