@@ -1,5 +1,8 @@
 'use strict';
 
+const Image = require('../models/Image.js');
+/////////////////////////////////////////
+
 const getEntireImageCollection = (req, res) => {
   res.send({
     'image': [
@@ -24,4 +27,16 @@ const editSpecificImage = (req, res) => {
   console.log('Edit Image Single Route', req.body);
 };
 
-module.exports = { getEntireImageCollection, getSpecificImage, editSpecificImage };
+const createNewImage = ({ body }, res) => {
+  Image
+  .create(body)
+  .then((newImageObject) => {
+    if (newImageObject) {
+      res.send(newImageObject);
+    } else {
+      res.send({ msg: 'Image was not created.' });
+    }
+  });
+};
+
+module.exports = { getEntireImageCollection, getSpecificImage, editSpecificImage, createNewImage };
