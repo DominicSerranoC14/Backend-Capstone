@@ -7,8 +7,7 @@
       ]
     },
 
-    { "Route": "/api/user/:id", "Params": "email / *** username", "Method": "GET", "Data": "User profile info" },
-    { "Route": "/api/user", "Params": "--", "Method": "POST", "Data": "Send user profile form object" },
+    { "Route": "/api/user/:id", "Params": "email / *** username", "Method": "GET / POST", "Data": "User profile info" },
     { "Route": "/api/feed/all", "Params": "--", "Method": "GET", "Data": "Returns all post documents" },
     { "Route": "/api/feed/:id", "Params": "Username / User ID", "Method": "GET", "Data": "Returns specified users home feed" },
     { "Route": "/api/user/login", "Params": "--", "Method": "POST", "Data": "User login credentials" },

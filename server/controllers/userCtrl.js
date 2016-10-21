@@ -3,7 +3,7 @@
 const User = require('../models/User.js');
 /////////////////////////////////////////
 
-//User profile routes for user info and updating
+//Gets a specific user's document
 const getUserProfile = (req, res) => {
   const userSearchParams = req.params.id;
 
@@ -18,17 +18,14 @@ const getUserProfile = (req, res) => {
   });
 };
 
-const editUserProfile = ({ body: { email, userName, password } }, res) => {
-
-
-  // console.log('User edit route ResJSON', req.params);
-  console.log('User edit route ResJSON', email, userName, password);
-
+// POST user obj to DB, will use to send new users and to update user docs
+const editUserProfile = ({ body }, res) => {
   User
-  .create({ "email": email, "userName": userName, "password": password })
-  .then((status) => {
-    res.send({ msg: `Account created for userName: ${userName} at  email: ${email}`});
+  .findOneAndUpdate({"email": body.email}, body, { returnNewDocument: true })
+  .then((updatedUser) => {
+    res.send({ msg: `Updated User ${body.userName}` });
   });
 };
 
+/////////////////////////////////////////
 module.exports = { getUserProfile, editUserProfile };
