@@ -24,7 +24,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: new RedisStore({
-    url: process.env.REDIS_URL || 'redis://localhost:6379'
+    url: process.env.HEROKU_REDIS_PUCE_URL || 'redis://localhost:6379'
   }),
   secret: 'spyonfido'
 }));

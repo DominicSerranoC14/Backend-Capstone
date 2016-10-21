@@ -1,0 +1,15 @@
+{
+  "API Data map for spyonfido":
+  [
+    { "Route": "/api/user", "Params": "--", "Method": "GET / POST", "Data": "User profile info" },
+    { "Route": "/api/feed/all", "Params": "--", "Method": "GET", "Data": "Returns all post documents" },
+    { "Route": "/api/feed/:id", "Params": "Username / User ID", "Method": "GET", "Data": "Returns specified users home feed" },
+    { "Route": "/api/user/login", "Params": "--", "Method": "POST", "Data": "User login credentials" },
+    { "Route": "/api/user/register", "Params": "--", "Method": "POST", "Data": "New user document" },
+    { "Route": "/api/post/new", "Params": "--", "Method": "POST", "Data": "New post document" },
+    { "Route": "/api/post/:id", "Params": "Post ID", "Method": "GET / POST", "Data": "Post document" },
+    { "Route": "/api/image/all", "Params": "--", "Method": "GET", "Data": "Returns all image documents" },
+    { "Route": "/api/image/all/:id", "Params": "Username / User ID", "Method": "GET", "Data": "Returns all images of a single specified user" },
+    { "Route": "/api/image/:id", "Params": "Image ID", "Method": "GET / POST", "Data": "Returns an image document" }
+  ]
+}

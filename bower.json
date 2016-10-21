@@ -1,0 +1,17 @@
+{
+  "name": "Backend-Capstone",
+  "description": "Backend Capstone project for Nashville Software School",
+  "main": "index.js",
+  "authors": [
+    "Dominic Serrano <dmsrojo@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/DominicSerranoC14/Backend-Capstone",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
