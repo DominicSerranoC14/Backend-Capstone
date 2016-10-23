@@ -9,6 +9,18 @@
 
     { "POST ROUTES": [
       {
+        "Route": "/api/post/collection/all",
+        "Params": "--",
+        "Method": "GET",
+        "Data": "Returns all post documents"
+      },
+      {
+        "Route": "/api/post/collection/:id",
+        "Params": "ownerId",
+        "Method": "GET",
+        "Data": "Returns all post documents of a specific user"
+      },
+      {
         "Route": "/api/post/new",
         "Params": "--",
         "Method": "POST",
@@ -21,17 +33,11 @@
         "Data": "Post document"
       },
       {
-        "Route": "/api/feed/:id",
-        "Params": "Username / User ID",
+        "Route": "/api/post/delete/:id",
+        "Params": "Post id: _id",
         "Method": "GET",
-        "Data": "Returns specified users home feed"
-      },
-      {
-        "Route": "/api/feed/all",
-        "Params": "--",
-        "Method": "GET",
-        "Data": "Returns all post documents"
+        "Data": "Deletes a specific post"
       }
     ]}
-  ]  
+  ]
 }

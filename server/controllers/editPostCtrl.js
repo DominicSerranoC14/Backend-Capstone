@@ -1,31 +1,37 @@
 'use strict';
 
-const createNewPost = (req, res) => {
-  console.log('New post route', req.body);
-};
+const Post = require('../models/Post.js');
+/////////////////////////////////////////
 
-const getEntirePostCollection = (req, res) => {
-  res.send({
-    'postList': [
-      { 'one': 'body'},
-      { 'two': 'body'},
-      { 'three': 'body'}
-    ]
+const createNewPost = ({ body }, res) => {
+  Post
+  .create(body)
+  .then((newPostObj) => {
+    res.send(newPostObj);
+  })
+  .catch((err) => {
+    res.send({ msg: 'ERROR: Post could not be created' });
   });
 };
 
-const getSpecificPost = (req, res) => {
-  console.log('Get specific post params', req.params);
-  res.send({
-    'postId': '123',
-    'owner': 'Phillip',
-    'heading': 'Phillip likes cheese'
+
+const editSpecificPost = ({ body, params: { id }}, res) => {
+  Post
+  .findOneAndUpdate({ _id: id }, body)
+  .then((success) => {
+    res.send(success);
+  })
+  .catch((err) => {
+    res.send({ msg: `ERROR: Post ${id} could not be edited` });
   });
 };
 
-const editSpecificPost = (req, res) => {
-  console.log('Edit specific post route', req.body);
-  console.log('Route Param Post Id', req.params)
+const deleteSpecificPost = (req, res) => {
+
 };
 
-module.exports = { createNewPost, getEntirePostCollection, getSpecificPost, editSpecificPost };
+module.exports = {
+  createNewPost,
+  editSpecificPost,
+  deleteSpecificPost
+};

@@ -2,14 +2,15 @@
 
 const { Router } = require('express');
 const router = Router();
-const { getEntireImageCollection, getSpecificImage, deleteSpecificImage, createNewImage, getSpeficUserImageCollection } = require('../controllers/imageCtrl.js');
+const { getEntireImageCollection, getSpecificImage, getSpeficUserImageCollection } = require('../controllers/getImageCtrl.js');
+const { deleteSpecificImage, createNewImage } = require('../controllers/editImageCtrl.js');
 /////////////////////////////////////////
 
+router.get('/api/image/collection/all', getEntireImageCollection);
+router.get('/api/image/collection/:id', getSpeficUserImageCollection);
 router.post('/api/image/new', createNewImage);
 router.get('/api/image/:id', getSpecificImage);
 router.post('/api/image/delete/:id', deleteSpecificImage);
-router.get('/api/image/collection/all', getEntireImageCollection);
-router.get('/api/image/collection/:id', getSpeficUserImageCollection);
 
 /////////////////////////////////////////
 module.exports = router;

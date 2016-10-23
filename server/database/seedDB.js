@@ -80,6 +80,16 @@ DB.connect()
         '12345' + '5b6n7m',
         '12345' + '1a2s3d'
       ]
+    },
+    {
+      ownerId: '12345',
+      ownerName: 'greg2g',
+      timeStamp: new Date(),
+      header: 'Post number 2 from greg',
+      contentBody: 'Greg is awesome... again',
+      attachedImageList: [
+
+      ]
     }
   ])
 )
