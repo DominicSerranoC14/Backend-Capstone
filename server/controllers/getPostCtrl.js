@@ -16,8 +16,15 @@ const getPostCollection = (req, res) => {
 };
 
 
-const getUserPostCollection = (req, res) => {
-
+const getUserPostCollection = ({ params: { id }}, res) => {
+  Post
+  .find({ ownerId: id })
+  .then((postCollection) => {
+    res.send(postCollection);
+  })
+  .catch((err) => {
+    res.send({ msg: `ERROR: No user posts with id ${id} were found`})
+  });
 };
 
 
