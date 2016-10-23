@@ -31,28 +31,28 @@ DB.connect()
       ownerId: '12345',
       ownerName: 'greg2g',
       timeStamp: new Date(),
-      id: '12345' + '5b6n7m',
+      _id: '12345' + '5b6n7m',
       encodedImg: 'ASDFG'
     },
     {
       ownerId: '12345',
       ownerName: 'greg2g',
       timeStamp: new Date(),
-      id: '12345' + '1a2s3d',
+      _id: '12345' + '1a2s3d',
       encodedImg: 'hjkl;'
     },
     {
       ownerId: '67890',
       ownerName: 'philly',
-      id: '067890' + '1q2w3e',
       timeStamp: new Date(),
+      _id: '067890' + '1q2w3e',
       encodedImg: 'zxcvnm'
     },
     {
       ownerId: '67890',
       ownerName: 'philly',
-      id: '067890' + '4r5t6y',
       timeStamp: new Date(),
+      _id: '067890' + '4r5t6y',
       encodedImg: 'qwerty'
     }
   ])

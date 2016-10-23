@@ -2,9 +2,9 @@
 
 const { Router } = require('express');
 const router = Router();
-const feed = require('../controllers/feedCtrl.js');
+const post = require('../controllers/getPostCtrl.js');
 /////////////////////////////////////////
 
-router.get('/api/feed', feed);
+router.get('/api/post/collection/all', post);
 
 module.exports = router;

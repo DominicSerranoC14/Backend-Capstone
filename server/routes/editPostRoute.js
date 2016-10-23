@@ -2,7 +2,7 @@
 
 const { Router } = require('express');
 const router = Router();
-const { createNewPost, getEntirePostCollection, getSpecificPost, editSpecificPost } = require('../controllers/postCtrl');
+const { createNewPost, getEntirePostCollection, getSpecificPost, editSpecificPost } = require('../controllers/editPostCtrl.js');
 /////////////////////////////////////////
 
 router.post('/api/post/new', createNewPost);
