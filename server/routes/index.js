@@ -12,11 +12,11 @@ const image = require('./imageRoute.js');
 
 //Routers
 router.use(doc);
-router.use(post);
-router.use(image);
-router.use(user);
-router.use(login);
 router.use(register);
+router.use(login);
+router.use(user);
+router.use(image);
+router.use(post);
 
 /////////////////////////////////////////
 module.exports = router;

@@ -5,8 +5,6 @@ const User = require('../models/User.js');
 
 const registerNewUser = ({ body }, res) => {
 
-  let formContents = body;
-
   User
   .findOne({ "email": body.email })
   .then((userObject) => {
@@ -17,7 +15,6 @@ const registerNewUser = ({ body }, res) => {
       User
       .create(body)
       .then((registeredUser) => {
-        console.log("Test registeredUser", registeredUser);
         // Create user in DB and grant access to home feed
         res.send({msg: `Account created for userName: ${body.userName} at  email: ${body.email}`});
       });
