@@ -28,12 +28,14 @@ const getUserPostCollection = ({ params: { id }}, res) => {
 };
 
 
-const getSpecificPost = (req, res) => {
-  console.log('Get specific post params', req.params);
-  res.send({
-    'postId': '123',
-    'owner': 'Phillip',
-    'heading': 'Phillip likes cheese'
+const getSpecificPost = ({ params: { id }}, res) => {
+  Post
+  .find({ _id: id })
+  .then((postObject) => {
+    res.send(postObject)
+  })
+  .catch((err) => {
+    res.send({ msg: `No post found with id ${id}` })
   });
 };
 
