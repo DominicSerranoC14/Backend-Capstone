@@ -35,11 +35,11 @@ const getUserProfile = ({ params: { id } }, res) => {
 
 
 // POST user obj to DB, will use to send new users and to update user docs
-const editUserProfile = ({ body }, res) => {
+const editUserProfile = ({ body, params: { id }}, res) => {
   User
-  .findOneAndUpdate({"email": body.email}, body)
+  .findOneAndUpdate({_id: id}, body)
   .then((updatedUser) => {
-    res.send({ msg: `Updated User ${body.userName}` });
+    res.send({ msg: `Updated User ${id}` });
   })
   .catch((err) => {
     res.send({msg: 'ERROR: No user profile found'});

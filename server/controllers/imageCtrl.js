@@ -51,7 +51,6 @@ const getSpeficUserImageCollection = ({ params: { id }}, res) => {
 
 
 const deleteSpecificImage = ({ params: { field, id }}, res) => {
-  console.log("Test field, id", field, id);
   Image
   .remove({ _id: id})
   .then((response) => {

@@ -1,13 +1,29 @@
 'use strict';
 
-const createNewPost = (req, res) => {
-  console.log('New post route', req.body);
+const Post = require('../models/Post.js');
+/////////////////////////////////////////
+
+const createNewPost = ({ body }, res) => {
+  Post
+  .create(body)
+  .then((newPostObj) => {
+    res.send(newPostObj);
+  })
+  .catch((err) => {
+    res.send({ msg: 'ERROR: Post could not be created' });
+  });
 };
 
 
-const editSpecificPost = (req, res) => {
-  console.log('Edit specific post route', req.body);
-  console.log('Route Param Post Id', req.params)
+const editSpecificPost = ({ body, params: { id }}, res) => {
+  Post
+  .findOneAndUpdate({ _id: id }, body)
+  .then((success) => {
+    res.send(success);
+  })
+  .catch((err) => {
+    res.send({ msg: `ERROR: Post ${id} could not be edited` });
+  });
 };
 
 const deleteSpecificPost = (req, res) => {

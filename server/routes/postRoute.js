@@ -10,9 +10,9 @@ const { getPostCollection, getSpecificPost, getUserPostCollection } = require('.
 
 router.get('/api/post/collection/all', getPostCollection);
 router.get('/api/post/collection/:id', getUserPostCollection);
+router.post('/api/post/new', createNewPost);
 router.get('/api/post/:id', getSpecificPost);
 router.post('/api/post/:id', editSpecificPost);
-router.post('/api/post/new', createNewPost);
 router.post('/api/post/delete/:id', deleteSpecificPost)
 
 /////////////////////////////////////////
