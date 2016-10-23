@@ -11,8 +11,8 @@
       {
         "Route": "/api/user/collection",
         "Params": "--",
-        "Method": "GET / POST",
-        "Data": "All user profile docs"
+        "Method": "GET",
+        "Data": "Returns all user profile docs"
       },
       {
         "Route": "/api/user/:id",
