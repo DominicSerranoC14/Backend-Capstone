@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
+    "seed": "node server/database/seedDB.js",
     "postinstall": "node_modules/.bin/bower install"
   },
   "repository": {

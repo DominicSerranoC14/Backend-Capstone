@@ -7,8 +7,9 @@ const { getEntireImageCollection, getSpecificImage, deleteSpecificImage, createN
 
 router.post('/api/image/new', createNewImage);
 router.get('/api/image/:id', getSpecificImage);
-router.post('/api/image/delete/:field/:id', deleteSpecificImage);
+router.post('/api/image/delete/:id', deleteSpecificImage);
 router.get('/api/image/collection/all', getEntireImageCollection);
 router.get('/api/image/collection/:id', getSpeficUserImageCollection);
 
+/////////////////////////////////////////
 module.exports = router;

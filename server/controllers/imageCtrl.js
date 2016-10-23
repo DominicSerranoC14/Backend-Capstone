@@ -8,7 +8,6 @@ const getEntireImageCollection = (req, res) => {
   Image
   .find()
   .then(imageCollection => {
-    console.log("Test imageCollection", imageCollection);
     if (imageCollection.length === 0) {
       res.send({msg: 'No images in db currently'})
     } else {
@@ -52,8 +51,9 @@ const getSpeficUserImageCollection = ({ params: { id }}, res) => {
 
 
 const deleteSpecificImage = ({ params: { field, id }}, res) => {
+  console.log("Test field, id", field, id);
   Image
-  .remove({ field : id})
+  .remove({ _id: id})
   .then((response) => {
     res.send({ msg: `Image id ${id} was deleted`});
   })

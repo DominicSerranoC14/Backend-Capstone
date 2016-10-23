@@ -2,9 +2,10 @@
 
 const { Router } = require('express');
 const router = Router();
-const { getUserProfile, editUserProfile } = require('../controllers/userCtrl.js');
+const { getUserProfile, editUserProfile, getUserCollection } = require('../controllers/userCtrl.js');
 /////////////////////////////////////////
 
+router.get('/api/user/collection', getUserCollection);
 router.get('/api/user/:id', getUserProfile);
 router.post('/api/user/:id', editUserProfile);
 
