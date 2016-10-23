@@ -8,11 +8,15 @@ const getEntireImageCollection = (req, res) => {
   Image
   .find()
   .then(imageCollection => {
-    res.send(imageCollection);
+    console.log("Test imageCollection", imageCollection);
+    if (imageCollection.length === 0) {
+      res.send({msg: 'No images in db currently'})
+    } else {
+      res.send(imageCollection);
+    }
   })
   .catch((err) => {
     res.send({msg: 'ERROR: No images found'});
-    console.log(err);
   });
 };
 
@@ -35,7 +39,11 @@ const getSpeficUserImageCollection = ({ params: { id }}, res) => {
   Image
   .find({ownerId: id})
   .then((imageCollection) => {
-    res.send(imageCollection);
+    if (imageCollection.length === 0) {
+      res.send({msg: 'No images associate to user in db currently'})
+    } else {
+      res.send(imageCollection);
+    }
   })
   .catch((err) => {
     res.send({msg: 'ERROR: No user collection found'});
@@ -43,9 +51,15 @@ const getSpeficUserImageCollection = ({ params: { id }}, res) => {
 };
 
 
-const editSpecificImage = (req, res) => {
-  console.log('Specific Img', req.params);
-  console.log('Edit Image Single Route', req.body);
+const deleteSpecificImage = ({ params: { field, id }}, res) => {
+  Image
+  .remove({ field : id})
+  .then((response) => {
+    res.send({ msg: `Image id ${id} was deleted`});
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No user collection found'});
+  });
 };
 
 
@@ -69,6 +83,6 @@ module.exports = {
   getEntireImageCollection,
   getSpecificImage,
   getSpeficUserImageCollection,
-  editSpecificImage,
+  deleteSpecificImage,
   createNewImage
 };
