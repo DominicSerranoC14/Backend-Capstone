@@ -3,18 +3,19 @@
 const Image = require('../models/Image.js');
 /////////////////////////////////////////
 
+
 const getEntireImageCollection = (req, res) => {
-  res.send({
-    'image': [
-      { 'one': '0398' },
-      { 'two': '0398' },
-      { 'three': '0398' }
-    ]
+  Image
+  .find()
+  .then(imageCollection => {
+    res.send(imageCollection);
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No images found'});
+    console.log(err);
   });
 };
-// process.on('unhandledRejection', (reason) => {
-//   console.log('Reason: ' + reason);
-// });
+
 
 const getSpecificImage = ({ params: { id }}, res) => {
   Image
@@ -29,10 +30,24 @@ const getSpecificImage = ({ params: { id }}, res) => {
   });
 };
 
+
+const getSpeficUserImageCollection = ({ params: { id }}, res) => {
+  Image
+  .find({ownerId: id})
+  .then((imageCollection) => {
+    res.send(imageCollection);
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No user collection found'});
+  });
+};
+
+
 const editSpecificImage = (req, res) => {
   console.log('Specific Img', req.params);
   console.log('Edit Image Single Route', req.body);
 };
+
 
 const createNewImage = ({ body }, res) => {
   Image
@@ -49,4 +64,11 @@ const createNewImage = ({ body }, res) => {
   });
 };
 
-module.exports = { getEntireImageCollection, getSpecificImage, editSpecificImage, createNewImage };
+
+module.exports = {
+  getEntireImageCollection,
+  getSpecificImage,
+  getSpeficUserImageCollection,
+  editSpecificImage,
+  createNewImage
+};
