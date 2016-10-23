@@ -1,0 +1,37 @@
+{
+  "API Data map for spyonfido":
+  [
+    { "Legend": [
+        { "!!": "Optional for api request" },
+        { "'***'": "Feature not enabled yet" }
+      ]
+    },
+
+    { "POST ROUTES": [
+      {
+        "Route": "/api/post/new",
+        "Params": "--",
+        "Method": "POST",
+        "Data": "New post document"
+      },
+      {
+        "Route": "/api/post/:id",
+        "Params": "Post ID",
+        "Method": "GET / POST",
+        "Data": "Post document"
+      },
+      {
+        "Route": "/api/feed/:id",
+        "Params": "Username / User ID",
+        "Method": "GET",
+        "Data": "Returns specified users home feed"
+      },
+      {
+        "Route": "/api/feed/all",
+        "Params": "--",
+        "Method": "GET",
+        "Data": "Returns all post documents"
+      }
+    ]}
+  ]  
+}

@@ -1,0 +1,36 @@
+{
+  "API Data map for spyonfido":
+  [
+    { "Legend": [
+        { "!!": "Optional for api request" },
+        { "'***'": "Feature not enabled yet" }
+      ]
+    },
+
+    { "USER ROUTES": [
+      {
+        "Route": "/api/user/collection",
+        "Params": "--",
+        "Method": "GET",
+        "Data": "Returns all user profile docs"
+      },
+      {
+        "Route": "/api/user/:id",
+        "Params": "email / *** username", "Method": "GET / POST",
+        "Data": "Return or edit specific user document"
+      },
+      {
+        "Route": "/api/user/login",
+        "Params": "--",
+        "Method": "POST",
+        "Data": "User login credentials"
+      },
+      {
+        "Route": "/api/user/register",
+        "Params": "--",
+        "Method": "POST",
+        "Data": "New user document"
+      }
+    ]}
+  ]
+}

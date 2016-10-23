@@ -8,9 +8,7 @@ const app = express();
 const server = Server(app);
 const io = socketio(server);
 const PORT = process.env.PORT || 3000;
-const mongoose = require('mongoose');
-mongoose.Promise = Promise;
-const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/spyonfido';
+const DB = require('./database/database.js');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const routes = require('./routes/')
@@ -35,11 +33,13 @@ app.use(routes);
 
 
 //Connect to the database
-mongoose.connect(MONGODB_URL, () => {
+DB.connect()
+.then(() => {
   server.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
 });
 
 
+//Socket io interaction
 io.on('connect', socket => {
   console.log("Test connected");
 });

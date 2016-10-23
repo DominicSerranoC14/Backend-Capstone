@@ -1,27 +1,88 @@
 'use strict';
 
+const Image = require('../models/Image.js');
+/////////////////////////////////////////
+
+
 const getEntireImageCollection = (req, res) => {
-  res.send({
-    'image': [
-      { 'one': '0398' },
-      { 'two': '0398' },
-      { 'three': '0398' }
-    ]
+  Image
+  .find()
+  .then(imageCollection => {
+    if (imageCollection.length === 0) {
+      res.send({msg: 'No images in db currently'})
+    } else {
+      res.send(imageCollection);
+    }
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No images found'});
   });
 };
 
-const getSpecificImage = (req, res) => {
-  let id = req.params.id;
-  console.log('Specific Img', req.params);
-  res.send({
-    'imageid': '098',
-    'user': `${id}`
+
+const getSpecificImage = ({ params: { id }}, res) => {
+  Image
+  .findOne({ "_id": id })
+  .then((imageObj) => {
+    if (imageObj) {
+      res.send({msg: 'Image found', imageObj});
+    }
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No image found'});
   });
 };
 
-const editSpecificImage = (req, res) => {
-  console.log('Specific Img', req.params);
-  console.log('Edit Image Single Route', req.body);
+
+const getSpeficUserImageCollection = ({ params: { id }}, res) => {
+  Image
+  .find({ownerId: id})
+  .then((imageCollection) => {
+    if (imageCollection.length === 0) {
+      res.send({msg: 'No images associate to user in db currently'})
+    } else {
+      res.send(imageCollection);
+    }
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No user collection found'});
+  });
 };
 
-module.exports = { getEntireImageCollection, getSpecificImage, editSpecificImage };
+
+const deleteSpecificImage = ({ params: { field, id }}, res) => {
+  console.log("Test field, id", field, id);
+  Image
+  .remove({ _id: id})
+  .then((response) => {
+    res.send({ msg: `Image id ${id} was deleted`});
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: No user collection found'});
+  });
+};
+
+
+const createNewImage = ({ body }, res) => {
+  Image
+  .create(body)
+  .then((newImageObject) => {
+    if (newImageObject) {
+      res.send(newImageObject);
+    } else {
+      res.send({ msg: 'Image was not created.' });
+    }
+  })
+  .catch((err) => {
+    res.send({msg: 'ERROR: Image could not be created'});
+  });
+};
+
+
+module.exports = {
+  getEntireImageCollection,
+  getSpecificImage,
+  getSpeficUserImageCollection,
+  deleteSpecificImage,
+  createNewImage
+};
