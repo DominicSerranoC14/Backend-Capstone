@@ -39,7 +39,7 @@ DB.connect()
 });
 
 
-//Socket io interaction
+// Socket io interaction
 io.on('connect', socket => {
   console.log("Test connected");
 });

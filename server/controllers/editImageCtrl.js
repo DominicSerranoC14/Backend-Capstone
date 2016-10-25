@@ -4,19 +4,24 @@ const Image = require('../models/Image.js');
 /////////////////////////////////////////
 
 
-const createNewImage = ({ body }, res) => {
-  Image
-  .create(body)
-  .then((newImageObject) => {
-    if (newImageObject) {
-      res.send(newImageObject);
-    } else {
-      res.send({ msg: 'Image was not created.' });
-    }
-  })
-  .catch((err) => {
-    res.send({msg: 'ERROR: Image could not be created'});
-  });
+const createNewImage = (req, res) => {
+  let data = '';
+  req.on('data', chunk => data += chunk.toString('base64'));
+  console.log('Data chunk')
+  req.on('end', () => console.log('Stream ended'));
+  // Image
+  // .create(body)
+  // .then((newImageObject) => {
+  //   if (newImageObject) {
+  //     res.send(newImageObject);
+  //   } else {
+  //     res.send({ msg: 'Image was not created.' });
+  //   }
+  // })
+  // .catch((err) => {
+  //   res.send({msg: 'ERROR: Image could not be created'});
+  //   console.log(err);
+  // });
 };
 
 
