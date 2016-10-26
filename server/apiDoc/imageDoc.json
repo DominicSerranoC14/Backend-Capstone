@@ -9,7 +9,7 @@
 
     { "IMAGE ROUTES": [
       { "Route": "/api/image/new",
-        "Params": "Image ID: _id",
+        "Params": "--",
         "Method": "POST",
         "Data": "Creates a new image document" },
       {

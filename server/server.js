@@ -17,6 +17,7 @@ const routes = require('./routes/')
 
 //Middlewares
 app.set('port', PORT);
+app.use(express.static('client'));
 app.use(json());
 app.use(session({
   resave: false,
@@ -39,7 +40,7 @@ DB.connect()
 });
 
 
-//Socket io interaction
+// Socket io interaction
 io.on('connect', socket => {
   console.log("Test connected");
 });
