@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
   <link href="/lib/angular-material/angular-material.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body ng-app='BECAP'>
 
+  <div ng-include="'partials/nav.html'"></div>
   <div ng-view></div>
 
   <!--  Third party links  -->
@@ -18,10 +20,13 @@
   <script src="/app/app.js"></script>
 
   <!--  Factories  -->
-  <script src=""></script>
+  <!-- <script src=""></script> -->
 
   <!--  Controllers  -->
-  <script src=""></script>
+  <script src="/controllers/splashCtrl.js"></script>
+  <script src="/controllers/postFeedCtrl.js"></script>
+  <script src="/controllers/profileViewCtrl.js"></script>
+  <script src="/controllers/registerFormCtrl.js"></script>
 
 </body>
 </html>
