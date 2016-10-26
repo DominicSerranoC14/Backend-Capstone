@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 
 const userSchema = new mongoose.Schema({
-  _id: String,
+  // _id: String,
   ownerName: {
     type: String,
     required: true
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  encodedImg: {
+  imgUrl: {
     type: String,
     required: true,
     index: { unique: true }

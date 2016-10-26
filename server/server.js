@@ -33,6 +33,16 @@ app.use(session({
 app.use(routes);
 
 
+//Middleware catch for virtual urls when using 'html5Mode' in Angular
+app.use('/api', (req, res) => {
+  res.status(404).send({msg: '404: Not found'});
+});
+
+app.use((req, res) => {
+  res.sendFile(process.cwd() + '/client/index.html');
+});
+
+
 //Connect to the database
 DB.connect()
 .then(() => {
