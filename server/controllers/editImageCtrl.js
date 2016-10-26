@@ -9,7 +9,7 @@ const createNewImage = (req, res, err) => {
   uploadPhoto(req, res);
 
   req.on('end', () => {
-    console.log('Stream ended')
+    console.log(new Date() + 'Stream ended')
   });
 };
 
