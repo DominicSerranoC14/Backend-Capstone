@@ -1,32 +1,23 @@
 'use strict';
 
-const { writeFileSync } = require('fs');
+const { writeFileSync, createReadStream, createWriteStream } = require('fs');
 /////////////////////////////////////////
 
 
 const receiveVideoStream = (req, res) => {
 
-  console.log("Video stream function reached");
-  let videoData = '';
-  req.on('data', (data) => {
-    console.log('Data chunk');
-    videoData += data;
-  });
-
-  req.on('end', () => {
-    console.log('Stream ended');
-    writeFileSync('./server/videoFiles/video.mp4', videoData);
-  });
+  req.pipe(createWriteStream('./server/videoFiles/video.h264'));
 
 };
 
 
 const sendVideoStream = (req, res) => {
 
-  
+  createReadStream('./server/videoFiles/video.h264')
+  .pipe(res);
 
 };
 
 
 /////////////////////////////////////////
-module.exports = { receiveVideoStream };
+module.exports = { receiveVideoStream, sendVideoStream };

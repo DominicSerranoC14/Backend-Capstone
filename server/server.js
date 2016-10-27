@@ -18,6 +18,7 @@ const routes = require('./routes/')
 //Middlewares
 app.set('port', PORT);
 app.use(express.static('client'));
+app.use(express.static('server/videoFiles'));
 app.use(json());
 app.use(session({
   resave: false,
