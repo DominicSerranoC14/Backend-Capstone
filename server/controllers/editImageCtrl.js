@@ -1,7 +1,7 @@
 'use strict';
 
 const Image = require('../models/Image.js');
-const { uploadPhoto } = require('../awsConfig.js')
+const { uploadPhoto } = require('../aws/awsConfig.js')
 /////////////////////////////////////////
 
 

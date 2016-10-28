@@ -2,7 +2,7 @@
 
 const AWS = require('aws-sdk');
 // const AWS_CREDS = require('./aws_creds.json');
-const Image = require('./models/Image.js');
+const Image = require('../models/Image.js');
 /////////////////////////////////////////
 
 
