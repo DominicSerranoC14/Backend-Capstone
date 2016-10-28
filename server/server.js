@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3000;
 const DB = require('./database/database.js');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const routes = require('./routes/')
+const routes = require('./routes/');
+const { red, green } = require('chalk');
 /////////////////////////////////////////
 
 
@@ -47,7 +48,7 @@ app.use((req, res) => {
 //Connect to the database
 DB.connect()
 .then(() => {
-  server.listen(PORT, () => console.log(`Server listening on port: ${PORT}`))
+  server.listen(PORT, () => console.log(green(Date().slice(16, -15)), `Listening on port: ${PORT}`));
 });
 
 
