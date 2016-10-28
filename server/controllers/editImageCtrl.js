@@ -1,7 +1,8 @@
 'use strict';
 
 const Image = require('../models/Image.js');
-const { uploadPhoto } = require('../aws/awsConfig.js')
+const { uploadPhoto } = require('../aws/awsConfig.js');
+const { red, cyan } = require('chalk');
 /////////////////////////////////////////
 
 
@@ -9,7 +10,7 @@ const createNewImage = (req, res, err) => {
   uploadPhoto(req, res);
 
   req.on('end', () => {
-    console.log(new Date() + 'Stream ended')
+    console.log(cyan(Date().splice(16, -15)) ,'Stream ended')
   });
 };
 

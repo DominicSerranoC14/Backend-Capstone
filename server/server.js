@@ -12,7 +12,7 @@ const DB = require('./database/database.js');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const routes = require('./routes/');
-const { red, green } = require('chalk');
+const { red, cyan } = require('chalk');
 /////////////////////////////////////////
 
 
@@ -67,7 +67,7 @@ app.use((
 //Connect to the database
 DB.connect()
 .then(() => {
-  server.listen(PORT, () => console.log(green(Date().slice(16, -15)), `Listening on port: ${PORT}`));
+  server.listen(PORT, () => console.log(cyan(Date().slice(16, -15)), `Listening on port: ${PORT}`));
 });
 
 
