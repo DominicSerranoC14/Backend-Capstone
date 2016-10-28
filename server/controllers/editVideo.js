@@ -7,10 +7,7 @@ const spawn = require('child_process').spawn;
 /////////////////////////////////////////
 
 
-const receiveVideoStream = (req, res, err) => {
-  if ( err ) {
-    console.log(red(Date().slice(16, -15)), err)
-  }
+const receiveVideoStream = (req, res) => {
 
   console.log(green(Date().slice(16, -15)), 'Writing stream to file')
   req.pipe(createWriteStream('./server/videoFiles/video.h264'));

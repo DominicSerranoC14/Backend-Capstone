@@ -45,6 +45,25 @@ app.use((req, res) => {
 });
 
 
+// Error handling middleware
+app.use((
+    err,
+    { method, url, headers: { 'user-agent': agent } },
+    res,
+    next
+  ) => {
+
+  const timeStamp = Date().slice(16, -15);
+  const statusCode = res.statusCode;
+  const statusMessage = res.statusMessage;
+
+  console.error(
+    `${red(timeStamp)} [${red(`${url}`)}] Error(${statusCode}): "${statusMessage}"`
+  )
+  console.error(err.stack)
+})
+
+
 //Connect to the database
 DB.connect()
 .then(() => {
