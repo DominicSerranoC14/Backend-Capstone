@@ -48,7 +48,7 @@ app.use((req, res) => {
 //Connect to the database
 DB.connect()
 .then(() => {
-  server.listen(PORT, () => console.log(green(new Date()), `Server listening on port: ${PORT}`));
+  server.listen(PORT, () => console.log(green(Date().slice(16, -15)), `Listening on port: ${PORT}`));
 });
 
 
