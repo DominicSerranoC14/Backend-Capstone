@@ -27,7 +27,6 @@ module.exports.uploadPhoto = (req, res) => {
 
   // Get user info here
   let randomImageName = `image${Math.floor(Math.random() * (10000 - 0 + 1) + 0)}.jpg`;
-  let imageUrl = null;
 
   console.log(new Date() + "Image received");
 

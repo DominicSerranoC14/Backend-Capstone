@@ -2,3 +2,4 @@ dump.rdb
 server/database/seedMLAB.js
 client/lib
 server/aws_creds.json
+server/videoFiles
