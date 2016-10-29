@@ -16,10 +16,6 @@ const app = angular.module('BECAP', ['ngRoute'])
       controller: 'profileViewCtrl',
       templateUrl: 'partials/profileView.html'
     })
-    .when('/register', {
-      controller: 'registerFormCtrl',
-      templateUrl: 'partials/registerForm.html'
-    })
     .otherwise('/');
 
     //Cleans up the url, does not use '!#' in url
