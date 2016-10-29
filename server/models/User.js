@@ -6,11 +6,7 @@ const HTML5_EMAIL_VAL = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[
 
 
 const userSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    required: true,
-    index: { unique: true },
-  },
+  userName: String,
   email: {
     type: String,
     required: true,

@@ -15,7 +15,24 @@ app.factory("AuthFactory", function ($http, $q, $location, APIURL) {
     });
   };
 
+
+  // Send the user register creds to server
+  const postRegisterCredentials = function(userCreds) {
+    return $q(function (resolve, reject) {
+      $http.post(`${APIURL}/api/user/register`,
+      userCreds)
+      .success(function(userId) {
+        resolve(userId);
+      }).error( function(error){
+        reject(error);
+      });
+    });
+  };
+
   /////////////////////////////////////////
-  return { postLoginCredentials }
+  return {
+    postLoginCredentials,
+    postRegisterCredentials
+  };
 
 });

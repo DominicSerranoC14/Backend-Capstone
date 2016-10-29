@@ -16,7 +16,8 @@ const loginExistingUser = ({ body: { email, userName, password }}, res) => {
   })
   .catch((err) => {
     console.log(red(Date().slice(16, -15)), 'Error with login function');
-    res.send({ msg: 'Invalid credentials, cannot login' })
+    console.error(err);
+    res.send({ msg: 'Invalid credentials, cannot login'});
   });
 };
 

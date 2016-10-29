@@ -4,15 +4,15 @@
     <div class="col s4 indigo lighten-3">
       <div class="row indigo-text">
         <h5 class="center">Login</h5>
-        <h6 class="center red-text" ng-hide="loginError">Invalid credentials, please try again</h6>
+        <h6 class="center red-text" ng-hide="loginError">{{errMsg}}</h6>
         <div class="input-field col s12">
-          <input id="email" ng-model="userObj.email" type="email" class="validate">
+          <input id="email" ng-model="loginObj.email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" ng-model="userObj.password" type="password" class="validate">
+          <input id="password" ng-model="loginObj.password" type="password" class="validate">
           <label for="password">Password</label>
           <a ng-click="sendLoginCredentials()" class="waves-effect btn col s12 center-align indigo">Login</a>
         </div>
@@ -21,23 +21,24 @@
       <hr>
 
       <h5 class="center indigo-text">Register</h5>
+      <h6 class="center red-text" ng-hide="registerError">{{errMsg}}</h6>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="email" ng-model="registerObj.email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" ng-model="registerObj.password" type="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="confirm" type="password" class="validate">
+          <input id="confirm" ng-model="registerObj.confirm" type="password" class="validate">
           <label for="confirm">Confirm Password</label>
-          <a class="waves-effect btn col s12 center-align indigo">Register</a>
+          <a ng-click="sendRegisterCredentials()" class="waves-effect btn col s12 center-align indigo">Register</a>
         </div>
       </div>
     </div>
