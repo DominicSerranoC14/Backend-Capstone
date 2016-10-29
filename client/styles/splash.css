@@ -1,12 +1,7 @@
 /* Splash page styles */
 
-.parallax-container {
-  height: 300px;
-}
-
 .splash-image {
-  height: 300px;
-  width: 300px;
+  width: 100%;
 }
 
 /* Splash register login form */

@@ -4,16 +4,17 @@
     <div class="col s4 indigo lighten-3">
       <div class="row indigo-text">
         <h5 class="center">Login</h5>
+        <h6 class="center red-text" ng-hide="loginError">Invalid credentials, please try again</h6>
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="email" ng-model="userObj.email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" ng-model="userObj.password" type="password" class="validate">
           <label for="password">Password</label>
-          <a class="waves-effect btn col s12 center-align indigo">Login</a>
+          <a ng-click="sendLoginCredentials()" class="waves-effect btn col s12 center-align indigo">Login</a>
         </div>
       </div>
 
@@ -41,24 +42,21 @@
       </div>
     </div>
 
-    <div class="parallax-container col s8">
-      <div class="parallax">
-        <img class="splash-image" src="https://images.unsplash.com/photo-1452475168325-672188dc4dc3?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=8eee11421b076f56d4f4b6591e8ab644">
-      </div>
+    <div class="col s8">
+      <img class="splash-image" src="https://images.unsplash.com/photo-1452475168325-672188dc4dc3?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=8eee11421b076f56d4f4b6591e8ab644">
     </div>
 
     <div class="col s4 center">
       <i class="medium material-icons">add</i>
       <h5>Info One</h5>
-      <p>Lorem Ipsum és un text de farciment usat per la indústria de la tipografia i la impremta. Lorem Ipsum ha estat el text estàndard de la indústria des de l'any 1500, quan un impressor desconegut va fer servir una galerada de text i la va mesclar per crear un llibre de mostres tipogràfiques.</p>
+      <p>Lorem Ipsum és un text de farciment usat per la indústria de la tipografia i la impremta. Lorem Ipsum ha estat el text estàndard de la indústria des de l'any 1500, quan un impressor desconegut va fer servir una galerada de text.</p>
     </div>
 
     <div class="col s4 center">
       <i class="medium material-icons">add</i>
       <h5>Info Two</h5>
-      <p>Lorem Ipsum és un text de farciment usat per la indústria de la tipografia i la impremta. Lorem Ipsum ha estat el text estàndard de la indústria des de l'any 1500, quan un impressor desconegut va fer servir una galerada de text i la va mesclar per crear un llibre de mostres tipogràfiques.</p>
+      <p>Lorem Ipsum és un text de farciment usat per la indústria de la tipografia i la impremta. Lorem Ipsum ha estat el text estàndard de la indústria des de l'any 1500, quan un impressor desconegut va fer servir una galerada de text.</p>
     </div>
-
 
   </div>
 </div>

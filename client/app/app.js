@@ -1,7 +1,10 @@
 'use strict';
 
 const app = angular.module('BECAP', ['ngRoute'])
-  .config(($routeProvider, $locationProvider) => {
+.constant('APIURL', "http://localhost:3000");
+
+
+app.config(($routeProvider, $locationProvider) => {
 
     $routeProvider
     .when('/', {
