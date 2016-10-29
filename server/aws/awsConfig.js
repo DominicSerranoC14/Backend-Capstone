@@ -1,17 +1,15 @@
 'use strict';
 
 const AWS = require('aws-sdk');
-// const AWS_CREDS = require('./aws_creds.json');
+const AWS_CREDS = require('./aws_creds.json');
 const Image = require('../models/Image.js');
 /////////////////////////////////////////
 
 
 // Update AWS config with user credentials
 AWS.config.update({
-  secretAccessKey: process.env.AWSCREDS_BETA,
-  //  || AWS_CREDS.credentials.beta,
-  accessKeyId: process.env.AWSCREDS_ALPHA,
-  // || AWS_CREDS.credentials.alpha,
+  secretAccessKey: process.env.AWSCREDS_BETA || AWS_CREDS.credentials.beta,
+  accessKeyId: process.env.AWSCREDS_ALPHA  || AWS_CREDS.credentials.alpha,
   region: 'eu-central-1'
 });
 

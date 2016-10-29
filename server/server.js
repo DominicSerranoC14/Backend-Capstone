@@ -12,7 +12,7 @@ const DB = require('./database/database.js');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const routes = require('./routes/');
-const { red, green } = require('chalk');
+const { red, cyan } = require('chalk');
 /////////////////////////////////////////
 
 
@@ -45,10 +45,29 @@ app.use((req, res) => {
 });
 
 
+// Error handling middleware
+app.use((
+    err,
+    { method, url, headers: { 'user-agent': agent } },
+    res,
+    next
+  ) => {
+
+  const timeStamp = Date().slice(16, -15);
+  const statusCode = res.statusCode;
+  const statusMessage = res.statusMessage;
+
+  console.error(
+    `${red(timeStamp)} [${red(`${url}`)}] Error(${statusCode}): "${statusMessage}"`
+  )
+  console.error(err.stack)
+})
+
+
 //Connect to the database
 DB.connect()
 .then(() => {
-  server.listen(PORT, () => console.log(green(Date().slice(16, -15)), `Listening on port: ${PORT}`));
+  server.listen(PORT, () => console.log(cyan(Date().slice(16, -15)), `Listening on port: ${PORT}`));
 });
 
 
