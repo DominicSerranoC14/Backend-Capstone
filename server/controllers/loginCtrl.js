@@ -4,11 +4,12 @@ const User = require('../models/User.js');
 const { red, cyan } = require('chalk');
 /////////////////////////////////////////
 
-const loginExistingUser = ({ body: { email, userName, password }}, res) => {
+const loginExistingUser = ({ session, body: { email, userName, password }}, res) => {
   User
   .findOne({ "email": email })
   .then((userObject) => {
     if (userObject.password === password) {
+      session.email = email;
       res.send(userObject);
     } else {
       res.send({ msg: 'Invalid credentials, cannot login' })

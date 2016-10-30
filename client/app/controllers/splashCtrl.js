@@ -21,9 +21,10 @@ app.controller('splashCtrl', function ($scope, $http, $location, AuthFactory) {
 
   // Send login creds to server
   $scope.sendLoginCredentials = () => {
-    AuthFactory.postLoginCredentials($scope.loginObj).then((userObj) => {
+    AuthFactory.postLoginCredentials($scope.loginObj)
+    .then((userObj) => {
       if (userObj._id) {
-        $location.path("/home");
+        $location.path("/feed");
       } else {
         $scope.errMsg = userObj.msg;
         showLoginErrorMsg();

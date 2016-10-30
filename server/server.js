@@ -29,6 +29,10 @@ app.use(session({
   }),
   secret: 'spyonfido'
 }));
+app.use((req, res, next) => {
+  app.locals.email = req.session.email
+  next()
+});
 
 
 //Routes
