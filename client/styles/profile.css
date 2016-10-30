@@ -21,7 +21,7 @@ div {
 }
 
 #profile-image-display {
-  border: .25rem solid black;
+  border: .25rem solid grey;
   display: flex;
   width: 80vh;
   align-items: center;
