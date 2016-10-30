@@ -18,7 +18,7 @@ const getUserCollection = (req, res) => {
 
 
 //Gets a specific user's document
-const getUserProfile = ({ params: { id } }, res) => {
+const getUserProfile = ({ session, params: { id } }, res) => {
   User
   .findOne({ email: id })
   .then((userObject) => {
@@ -47,9 +47,19 @@ const editUserProfile = ({ body, params: { id }}, res) => {
 };
 
 
+const getCurrentUser = ({session: {email}}, res) => {
+  if (email) {
+    res.send({ 'email': email });
+  } else {
+    res.send({ msg: 'No current user signed in'});
+  }
+};
+
+
 /////////////////////////////////////////
 module.exports = {
   getUserCollection,
   getUserProfile,
-  editUserProfile
+  editUserProfile,
+  getCurrentUser
 };

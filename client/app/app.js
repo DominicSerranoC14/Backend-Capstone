@@ -1,7 +1,10 @@
 'use strict';
 
 const app = angular.module('BECAP', ['ngRoute'])
-  .config(($routeProvider, $locationProvider) => {
+.constant('APIURL', "http://localhost:3000");
+
+
+app.config(($routeProvider, $locationProvider) => {
 
     $routeProvider
     .when('/', {
@@ -15,10 +18,6 @@ const app = angular.module('BECAP', ['ngRoute'])
     .when('/profile', {
       controller: 'profileViewCtrl',
       templateUrl: 'partials/profileView.html'
-    })
-    .when('/register', {
-      controller: 'registerFormCtrl',
-      templateUrl: 'partials/registerForm.html'
     })
     .otherwise('/');
 

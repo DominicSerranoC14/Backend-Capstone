@@ -1,0 +1,41 @@
+div {
+  padding: 0;
+}
+
+#profile-console {
+  height: 50vh;
+  border: .5rem solid grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#profile-panel {
+  height: 90vh;
+}
+
+#profile-display-container {
+  height: 20vh;
+  display: flex;
+  margin: 1rem auto;
+}
+
+#profile-image-display {
+  border: .25rem solid black;
+  display: flex;
+  width: 80vh;
+  align-items: center;
+  overflow-x: scroll;
+}
+
+.profile-display-image {
+  width: 100px;
+  height: 100px;
+  margin: .5rem;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

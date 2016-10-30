@@ -1,5 +1,5 @@
 body {
-  color: tomato;
+  color: indigo;
 }
 
 a {
@@ -8,5 +8,5 @@ a {
 }
 
 a:hover {
-  color: blue;
+  color: orange;
 }
