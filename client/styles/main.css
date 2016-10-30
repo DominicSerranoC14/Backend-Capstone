@@ -10,3 +10,7 @@ a {
 a:hover {
   color: orange;
 }
+
+nav {
+  margin-bottom: 1rem;
+}
