@@ -20,9 +20,10 @@ div {
   margin: 1rem auto;
 }
 
-#profile-display {
+#profile-image-display {
   border: .25rem solid black;
   display: flex;
+  width: 80vh;
   align-items: center;
   overflow-x: scroll;
 }
@@ -30,6 +31,7 @@ div {
 .profile-display-image {
   width: 100px;
   height: 100px;
+  margin: .5rem;
 }
 
 .icon-container {
