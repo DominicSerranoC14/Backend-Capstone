@@ -1,42 +1,29 @@
 'use strict';
 
-app.controller('profileViewCtrl', function ($scope, $http) {
+app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, ScrollFactory) {
 
   const rightArrow = $('#right-arrow');
   const leftArrow = $('#left-arrow');
-  const imageDisplay = $('#profile-image-display');
+  let currentUserEmail;
   let scroll;
 
-  const scrollLeft = () => {
-    scroll = setInterval(() => {
-      imageDisplay.animate({
-        scrollLeft: `+=${15}px`
-      });
-    }, 400)
-  };
+  // Return the current users session email / id
+  GetUserFactory.getCurrentUser()
+  .then((data) => {
+    currentUserEmail = data.email;
+  });
 
-  const scrollRight = () => {
-    scroll = setInterval(() => {
-      imageDisplay.animate({
-        scrollLeft: `-=${15}px`
-      });
-    }, 400)
-  };
-
-  const stopScroll = () => {
-    clearInterval(scroll);
-  };
-
+  // Functionality for the image display hover scroll
   rightArrow.hover(() => {
-    scrollLeft();
+    ScrollFactory.scrollLeft();
   }, () => {
-    stopScroll();
+    ScrollFactory.stopScroll();
   });
 
   leftArrow.hover(() => {
-    scrollRight();
+    ScrollFactory.scrollRight();
   }, () => {
-    stopScroll();
+    ScrollFactory.stopScroll();
   });
 
 });
