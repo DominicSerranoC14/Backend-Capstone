@@ -3,6 +3,7 @@
 const AWS = require('aws-sdk');
 const AWS_CREDS = require('./aws_creds.json');
 const Image = require('../models/Image.js');
+const { red, cyan } = require('chalk');
 /////////////////////////////////////////
 
 
@@ -26,7 +27,7 @@ module.exports.uploadPhoto = (req, res) => {
   // Get user info here
   let randomImageName = `image${Math.floor(Math.random() * (10000 - 0 + 1) + 0)}.jpg`;
 
-  console.log(new Date() + "Image received");
+  console.log(cyan(Date().slice(16, -15)), "Image received");
 
   // Upload image to AWS S3
   s3Bucket.upload({ Body: req,
@@ -36,14 +37,13 @@ module.exports.uploadPhoto = (req, res) => {
     // Save new image doc in db with imageUrl
     Image
     .create({
-      ownerId: '12345',
-      ownerName: 'greg2g',
-      timeStamp: new Date(),
+      ownerEmail: 'me@me.com',
+      timeStamp: Date().slice(0, -15),
       imgUrl: data.Location
     })
     .then((newImage) => {
       if (newImage) {
-        console.log(new Date() + `Image has been saved in database at ${newImage.imgUrl}`);
+        console.log(cyan(Date().slice(16, -15)), `Image has been saved in database at ${newImage.imgUrl}`);
         res.send({ msg: 'Message was created' });
       } else {
         res.send({ msg: 'Image was not created.' });

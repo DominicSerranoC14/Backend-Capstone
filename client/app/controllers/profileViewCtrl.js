@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, ScrollFactory) {
+app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, ScrollFactory) {
 
   const rightArrow = $('#right-arrow');
   const leftArrow = $('#left-arrow');
@@ -26,7 +26,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     .then((sessionId) => {
       currentUserEmail = sessionId.email;
 
-      GetUserFactory.getCurrentUserObj(sessionId.email)
+      GetUserFactory.getCurrentUserObj(currentUserEmail)
       .then((userObject) => {
         $scope.currentUser = userObject;
         $scope.currentUser.profileEmail = userObject.email;
@@ -38,7 +38,12 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         } else {
           $scope.userNameStatus = true;
         }
-      })
+      });
+
+      GetImageFactory.getUserImageCollection(currentUserEmail)
+      .then((imageCollection) => {
+        console.log("Test imageCollection", imageCollection);
+      });
     });
   };
   loadPage();

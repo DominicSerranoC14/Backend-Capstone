@@ -6,11 +6,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   // _id: String,
-  ownerName: {
-    type: String,
-    required: true
-  },
-  ownerId: {
+  ownerEmail: {
     type: String,
     required: true
   },

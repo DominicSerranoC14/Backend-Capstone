@@ -36,7 +36,7 @@ const getSpecificImage = ({ params: { id }}, res) => {
 
 const getSpeficUserImageCollection = ({ params: { id }}, res) => {
   Image
-  .find({ownerId: id})
+  .find({ownerEmail: id})
   .then((imageCollection) => {
     if (imageCollection.length === 0) {
       res.send({msg: 'No images associate to user in db currently'})
