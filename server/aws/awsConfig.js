@@ -44,7 +44,7 @@ module.exports.uploadPhoto = (req, res) => {
     .then((newImage) => {
       if (newImage) {
         console.log(cyan(Date().slice(16, -15)), `Image has been saved in database at ${newImage.imgUrl}`);
-        res.send({ msg: 'Message was created' });
+        res.send({ msg: 'Image was created' });
       } else {
         res.send({ msg: 'Image was not created.' });
       }

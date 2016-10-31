@@ -46,7 +46,6 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       // Load the users image collection
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
-        console.log("Test imageCollection", typeof imageCollection);
         if (imageCollection.msg) {
           $scope.imageDisplayStatus = false;
         } else {
