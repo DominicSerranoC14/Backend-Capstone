@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.splash-container {
+  margin-top: 1rem;
+}
+
 /* Splash register login form */
 /* label color */
  .input-field label {

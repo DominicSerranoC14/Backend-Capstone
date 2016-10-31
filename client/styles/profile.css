@@ -33,10 +33,17 @@ div {
 }
 
 .profile-display-image {
-  width: 150px;
+  width: 200px;
   height: 150px;
   margin: .5rem;
   border-radius: 10%;
+}
+
+.profile-display-video {
+  width: 200px;
+  height: 200px;
+  margin: .5rem;
+  border-radius: 15%;
 }
 
 .icon-container {

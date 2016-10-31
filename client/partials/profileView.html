@@ -50,6 +50,12 @@
           <div ng-show="imageDisplayStatus" class="col" ng-repeat="each in currentUser.imageCollection">
             <img class="profile-display-image" ng-src="{{each.imgUrl}}" alt="" />
           </div>
+
+          <div class="col" ng-repeat="each in currentUser.videoCollection">
+            <video class="profile-display-video" width="560" height="340" controls>
+              <source ng-src="{{each.videoUrl}}" />
+            </video>
+          </div>
         </div>
         <div class="icon-container col">
           <i id="right-arrow" class="medium material-icons">keyboard_arrow_right</i>

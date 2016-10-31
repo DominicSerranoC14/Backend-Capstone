@@ -7,7 +7,7 @@ app.factory("ScrollFactory", function ($http, $q, $location, APIURL) {
   const scrollLeft = () => {
     scroll = setInterval(() => {
       imageDisplay.animate({
-        scrollLeft: `+=${15}px`
+        scrollLeft: `+=${30}px`
       });
     }, 400)
   };
@@ -15,7 +15,7 @@ app.factory("ScrollFactory", function ($http, $q, $location, APIURL) {
   const scrollRight = () => {
     scroll = setInterval(() => {
       imageDisplay.animate({
-        scrollLeft: `-=${15}px`
+        scrollLeft: `-=${30}px`
       });
     }, 400)
   };

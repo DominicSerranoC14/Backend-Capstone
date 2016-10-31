@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, RPIFactory, ScrollFactory) {
+app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, GetVideoFactory, RPIFactory, ScrollFactory) {
 
 
   const rightArrow = $('#right-arrow');
@@ -53,6 +53,17 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
           $scope.currentUser.imageCollection = imageCollection;
         }
       });
+
+      // Load the Users video collection
+      GetVideoFactory.getUserVideoCollection(currentUserEmail)
+      .then((videoCollection) => {
+        if (videoCollection.msg) {
+          // Show ne video message
+        } else {
+          $scope.currentUser.videoCollection = videoCollection;
+        }
+      });
+
     });
   };
   loadPage();
