@@ -48,43 +48,26 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       // Load the users image collection
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
+        ScrollFactory.sortArrayByTimeStamp(imageCollection);
         if (imageCollection.msg) {
           $scope.imageDisplayStatus = false;
         } else {
           $scope.imageDisplayStatus = true;
-          $scope.currentUser.imageCollection = imageCollection.sort((a, b) => {
-            // Sort the images by time
-            if (b.timeStamp.slice(15) < a.timeStamp.slice(15)) {
-              return -1;
-            };
-            if (b.timeStamp.slice(15) > a.timeStamp.slice(15)) {
-              return 1;
-            };
-            // names must be equal
-            return 0;
-          });
+          $scope.currentUser.imageCollection =
+          imageCollection;
         };
       });
 
       // Load the Users video collection
       GetVideoFactory.getUserVideoCollection(currentUserEmail)
       .then((videoCollection) => {
+        ScrollFactory.sortArrayByTimeStamp(videoCollection);
         if (videoCollection.msg) {
           // Show new video message
           $scope.videoDisplayStatus = false;
         } else {
           $scope.videoDisplayStatus = true;
-          $scope.currentUser.videoCollection = videoCollection.sort((a, b) => {
-            // Sort the images by time
-            if (b.timeStamp.slice(15) < a.timeStamp.slice(15)) {
-              return -1;
-            };
-            if (b.timeStamp.slice(15) > a.timeStamp.slice(15)) {
-              return 1;
-            };
-            // names must be equal
-            return 0;
-          });
+          $scope.currentUser.videoCollection = videoCollection;
         }
       });
 
