@@ -4,12 +4,24 @@
     <div id="profile-panel" class="col s3 grey lighten-3">
       <div class="row s12 center">
         <h5>Profile</h5>
-        <p>George</p>
-        <p>email</p>
+        <p class="col s12">
+          Username:
+          <input id="username-input" ng-show="userNameStatus" ng-model="currentUser.userName" type="text" class="validate" placeholder="Add username to your profile">
+          <a ng-hide="userNameStatus">{{currentUser.userName}}</a>
+        </p>
+        <p class="col s12">
+          Email: <a>{{currentUser.profileEmail}}</a>
+        </p>
       </div>
+
+      <hr>
 
       <div class="row s12 center">
         <h5>Friends</h5>
+        <p ng-show="friendsStatus">{{profileFriends}}</p>
+        <p ng-show="friendsStatus">
+          <a>No friends currently</a>
+        </p>
       </div>
     </div>
 

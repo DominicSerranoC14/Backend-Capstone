@@ -11,7 +11,7 @@ div {
 }
 
 #profile-panel {
-  height: 90vh;
+  height: 85vh;
 }
 
 #profile-display-container {
@@ -21,7 +21,7 @@ div {
 }
 
 #profile-image-display {
-  border: .25rem solid black;
+  border: .25rem solid grey;
   display: flex;
   width: 80vh;
   align-items: center;

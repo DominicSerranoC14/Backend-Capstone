@@ -2,8 +2,8 @@
 
 app.factory("GetUserFactory", function ($http, $q, $location, APIURL) {
 
-  // Get current user
-  const getCurrentUser = function() {
+  // Get current user session email
+  const getCurrentUserEmail = function() {
     return $q(function (resolve, reject) {
       $http.get(`${APIURL}/api/user/current`)
       .success(function(userId) {
@@ -14,9 +14,22 @@ app.factory("GetUserFactory", function ($http, $q, $location, APIURL) {
     });
   };
 
+  // Get current user session email
+  const getCurrentUserObj = function(sessionId) {
+    return $q(function (resolve, reject) {
+      $http.get(`${APIURL}/api/user/${sessionId}`)
+      .success(function(userId) {
+        resolve(userId);
+      }).error( function(error){
+        reject(error);
+      });
+    });
+  };
+
   /////////////////////////////////////////
   return {
-    getCurrentUser
+    getCurrentUserEmail,
+    getCurrentUserObj
   };
 
 });

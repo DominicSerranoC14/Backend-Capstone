@@ -10,7 +10,7 @@ const createNewImage = (req, res, err) => {
   uploadPhoto(req, res);
 
   req.on('end', () => {
-    console.log(cyan(Date().splice(16, -15)) ,'Stream ended')
+    console.log(cyan(Date().slice(16, -15)) ,'Stream ended')
   });
 };
 
