@@ -9,6 +9,7 @@ const login = require('./loginRoute.js');
 const register = require('./registerRoute.js');
 const image = require('./imageRoute.js');
 const video = require('./videoRoute.js');
+const rpi = require('./RPIRoute.js');
 /////////////////////////////////////////
 
 //Routers
@@ -19,6 +20,7 @@ router.use(video);
 router.use(user);
 router.use(image);
 router.use(post);
+router.use(rpi);
 
 /////////////////////////////////////////
 module.exports = router;

@@ -1,6 +1,7 @@
 'use strict';
 
-app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, ScrollFactory) {
+app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, RPIFactory, ScrollFactory) {
+
 
   const rightArrow = $('#right-arrow');
   const leftArrow = $('#left-arrow');
@@ -42,7 +43,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
 
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
-        console.log("Test imageCollection", imageCollection);
+        $scope.currentUser.imageCollection = imageCollection;
       });
     });
   };
@@ -61,6 +62,13 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     };
   });
 
+  // Commands for RPI
+  $scope.takeSinglePicture = () => {
+    RPIFactory.takeSinglePicture()
+    .then((data) => {
+      console.log("Test data", data);
+    });
+  };
 
   // Functionality for the image display hover scroll
   rightArrow.hover(() => {

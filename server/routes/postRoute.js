@@ -6,8 +6,6 @@ const { createNewPost, editSpecificPost, deleteSpecificPost } = require('../cont
 const { getPostCollection, getSpecificPost, getUserPostCollection } = require('../controllers/getPostCtrl.js');
 /////////////////////////////////////////
 
-
-
 router.get('/api/post/collection/all', getPostCollection);
 router.get('/api/post/collection/:id', getUserPostCollection);
 router.post('/api/post/new', createNewPost);
