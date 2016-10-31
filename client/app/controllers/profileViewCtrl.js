@@ -95,14 +95,13 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     .then((result) => {
       if (result.msg) {
         let refreshTimerId = setInterval(() => {
-          console.log("Test text");
           GetImageFactory.getUserImageCollection(currentUserEmail)
           .then((collection) => {
+            ScrollFactory.sortArrayByTimeStamp(collection);
             if (collection.length > $scope.currentUser.imageCollection.length) {
               $scope.currentUser.imageCollection = collection;
-              console.log("Test worked");
               clearInterval(refreshTimerId);
-            }
+            };
           });
         }, 1000);
       } else {
@@ -113,10 +112,18 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
 
   $scope.takeStaticVideo = () => {
     RPIFactory.takeStaticVideo()
-    .then((msg) => {
-      if (msg) {
-        // Socket real time update once stream has ended
-        loadPage();
+    .then((response) => {
+      if (response.msg) {
+        let refreshTimerId = setInterval(() => {
+          GetVideoFactory.getUserVideoCollection(currentUserEmail)
+          .then((collection) => {
+            ScrollFactory.sortArrayByTimeStamp(collection);
+            if (collection.length > $scope.currentUser.videoCollection.length) {
+              $scope.currentUser.videoCollection = collection;
+              clearInterval(refreshTimerId);
+            };
+          });
+        }, 1000);
       } else {
         console.log("Failed");
       }
