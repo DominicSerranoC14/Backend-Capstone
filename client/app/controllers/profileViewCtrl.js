@@ -9,7 +9,10 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   let scroll;
   $scope.userNameStatus = true;
   $scope.friendsStatus = true;
+  $scope.viewImagesInDisplayStatus = true;
+  $scope.viewVideosInDisplayStatus = false;
   $scope.imageDisplayStatus = true;
+  $scope.videoDisplayStatus = true;
   $scope.currentUser = {};
 
 
@@ -58,8 +61,10 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       GetVideoFactory.getUserVideoCollection(currentUserEmail)
       .then((videoCollection) => {
         if (videoCollection.msg) {
-          // Show ne video message
+          // Show new video message
+          $scope.videoDisplayStatus = false;
         } else {
+          $scope.videoDisplayStatus = true;
           $scope.currentUser.videoCollection = videoCollection;
         }
       });
@@ -87,14 +92,38 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     RPIFactory.takeSinglePicture()
     .then((msg) => {
       if (msg) {
-        setTimeout(() => {
-          loadPage();
-        }, 8000);
+        // Socket real time update once stream has ended
+        loadPage();
       } else {
         console.log("Failed");
       }
     });
   };
+
+  $scope.takeStaticVideo = () => {
+    RPIFactory.takeStaticVideo()
+    .then((msg) => {
+      if (msg) {
+        // Socket real time update once stream has ended
+        loadPage();
+      } else {
+        console.log("Failed");
+      }
+    });
+  };
+
+
+  // Toggle what media is shown in the display container
+  $scope.showImagesInDisplay = () => {
+    $scope.viewImagesInDisplayStatus = true;
+    $scope.viewVideosInDisplayStatus = false;
+  };
+
+  $scope.showVideosInDisplay = () => {
+    $scope.viewImagesInDisplayStatus = false;
+    $scope.viewVideosInDisplayStatus = true;
+  };
+
 
   // Functionality for the image display hover scroll
   rightArrow.hover(() => {

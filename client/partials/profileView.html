@@ -32,30 +32,46 @@
           New Picture</a>
         </div>
         <div class="row">
-          <a ng-click="" class="waves-effect btn col s8 indigo offset-s2">New Video</a>
+          <a ng-click="takeStaticVideo()" class="waves-effect btn col s8 indigo offset-s2">New Video</a>
         </div>
         <div class="row">
           <a ng-click="" class="waves-effect btn col s8 indigo offset-s2">New Post</a>
         </div>
       </div>
 
+      <div class="toggle-media-view row s9">
+        <p class="col">
+          <a ng-click="showImagesInDisplay()" class="waves-effect btn indigo">View Images</a>
+        </p>
+        <p class="col">
+          <a ng-click="showVideosInDisplay()" class="waves-effect btn indigo">View Videos</a>
+        </p>
+      </div>
+
       <div id="profile-display-container" class="">
         <div class="icon-container col">
           <i id="left-arrow" class="medium material-icons">keyboard_arrow_left</i>
         </div>
-        <div id="profile-image-display" class="">
+
+        <div ng-show="viewImagesInDisplayStatus" id="profile-image-display" class="">
           <h5 ng-hide="imageDisplayStatus" class="row col s12 center">
             You currently have no images
           </h5>
           <div ng-show="imageDisplayStatus" class="col" ng-repeat="each in currentUser.imageCollection">
             <img class="profile-display-image" ng-src="{{each.imgUrl}}" alt="" />
           </div>
+        </div>
 
-          <div class="col" ng-repeat="each in currentUser.videoCollection">
+        <div ng-show="viewVideosInDisplayStatus" id="profile-image-display" class="">
+          <h5 ng-hide="videoDisplayStatus" class="row col s12 center">
+            You currently have no videos
+          </h5>
+          <div ng-show="videoDisplayStatus" class="col" ng-repeat="each in currentUser.videoCollection">
             <video class="profile-display-video" width="560" height="340" controls>
               <source ng-src="{{each.videoUrl}}" />
             </video>
           </div>
+
         </div>
         <div class="icon-container col">
           <i id="right-arrow" class="medium material-icons">keyboard_arrow_right</i>

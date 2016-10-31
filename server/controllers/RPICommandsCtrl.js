@@ -11,5 +11,11 @@ const RPITakePicture = (req, res) => {
   res.send({ msg: 'Sent'});
 };
 
+const RPITakeVideo = (req, res) => {
+  request.post(`http://${RPI}:3000/rpi/video/static`);
+
+  res.send({ msg: 'Sent'});
+};
+
 /////////////////////////////////////////
-module.exports = { RPITakePicture };
+module.exports = { RPITakePicture, RPITakeVideo };
