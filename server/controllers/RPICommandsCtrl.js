@@ -1,10 +1,13 @@
 'use strict';
 
 const { red, cyan } = require('chalk');
+const request = require('request');
 /////////////////////////////////////////
 
 const RPITakePicture = (req, res) => {
-  console.log("Test req.body");
+  request.post('http://192.168.2.100:3000/rpi/image/single');
+
+  res.send({ msg: 'Sent'});
 };
 
 /////////////////////////////////////////

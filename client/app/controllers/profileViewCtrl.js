@@ -9,6 +9,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   let scroll;
   $scope.userNameStatus = true;
   $scope.friendsStatus = true;
+  $scope.imageDisplayStatus = true;
   $scope.currentUser = {};
 
 
@@ -27,6 +28,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     .then((sessionId) => {
       currentUserEmail = sessionId.email;
 
+      // Load the users personal information
       GetUserFactory.getCurrentUserObj(currentUserEmail)
       .then((userObject) => {
         $scope.currentUser = userObject;
@@ -41,9 +43,16 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         }
       });
 
+      // Load the users image collection
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
-        $scope.currentUser.imageCollection = imageCollection;
+        console.log("Test imageCollection", typeof imageCollection);
+        if (imageCollection.msg) {
+          $scope.imageDisplayStatus = false;
+        } else {
+          $scope.imageDisplayStatus = true;
+          $scope.currentUser.imageCollection = imageCollection;
+        }
       });
     });
   };
@@ -62,11 +71,18 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     };
   });
 
+
   // Commands for RPI
   $scope.takeSinglePicture = () => {
     RPIFactory.takeSinglePicture()
-    .then((data) => {
-      console.log("Test data", data);
+    .then((msg) => {
+      if (msg) {
+        setTimeout(() => {
+          loadPage();
+        }, 8000);
+      } else {
+        console.log("Failed");
+      }
     });
   };
 

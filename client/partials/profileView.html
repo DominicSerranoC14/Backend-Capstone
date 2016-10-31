@@ -44,7 +44,10 @@
           <i id="left-arrow" class="medium material-icons">keyboard_arrow_left</i>
         </div>
         <div id="profile-image-display" class="">
-          <div class="col" ng-repeat="each in currentUser.imageCollection">
+          <h5 ng-hide="imageDisplayStatus" class="row col s12 center">
+            You currently have no images
+          </h5>
+          <div ng-show="imageDisplayStatus" class="col" ng-repeat="each in currentUser.imageCollection">
             <img class="profile-display-image" ng-src="{{each.imgUrl}}" alt="" />
           </div>
         </div>
