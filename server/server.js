@@ -2,7 +2,6 @@
 
 const express = require('express');
 const { Server } = require('http');
-const socketio = require('socket.io');
 const { json } = require('body-parser');
 const app = express();
 const server = Server(app);
@@ -29,7 +28,9 @@ app.use(session({
   secret: 'spyonfido'
 }));
 app.use((req, res, next) => {
-  app.locals.email = req.session.email;
+  if (req.session.email) {
+    app.locals.email = req.session.email;
+  };
   next();
 });
 

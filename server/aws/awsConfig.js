@@ -37,7 +37,7 @@ module.exports.uploadPhoto = (req, res) => {
     // Save new image doc in db with imageUrl
     Image
     .create({
-      ownerEmail: 'me@me.com',
+      ownerEmail: req.app.locals.email,
       timeStamp: Date().slice(0, -15),
       imgUrl: data.Location
     })

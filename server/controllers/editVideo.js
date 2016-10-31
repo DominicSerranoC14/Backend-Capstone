@@ -28,7 +28,7 @@ const receiveVideoStream = (req, res) => {
     console.log(cyan(Date().slice(16, -15)), 'Upload done');
 
     Video.create({
-      ownerEmail: 'me@me.com',
+      ownerEmail: req.app.locals.email,
       timeStamp: Date().slice(0, -15),
       videoUrl: videoUrl
     })

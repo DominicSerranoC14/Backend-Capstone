@@ -2,7 +2,6 @@
 
 app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, GetVideoFactory, RPIFactory, ScrollFactory) {
 
-
   const rightArrow = $('#right-arrow');
   const leftArrow = $('#left-arrow');
   let currentUserEmail;
@@ -53,8 +52,18 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
           $scope.imageDisplayStatus = false;
         } else {
           $scope.imageDisplayStatus = true;
-          $scope.currentUser.imageCollection = imageCollection;
-        }
+          $scope.currentUser.imageCollection = imageCollection.sort((a, b) => {
+            // Sort the images by time
+            if (b.timeStamp.slice(15) < a.timeStamp.slice(15)) {
+              return -1;
+            };
+            if (b.timeStamp.slice(15) > a.timeStamp.slice(15)) {
+              return 1;
+            };
+            // names must be equal
+            return 0;
+          });
+        };
       });
 
       // Load the Users video collection
@@ -65,7 +74,17 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
           $scope.videoDisplayStatus = false;
         } else {
           $scope.videoDisplayStatus = true;
-          $scope.currentUser.videoCollection = videoCollection;
+          $scope.currentUser.videoCollection = videoCollection.sort((a, b) => {
+            // Sort the images by time
+            if (b.timeStamp.slice(15) < a.timeStamp.slice(15)) {
+              return -1;
+            };
+            if (b.timeStamp.slice(15) > a.timeStamp.slice(15)) {
+              return 1;
+            };
+            // names must be equal
+            return 0;
+          });
         }
       });
 
@@ -90,10 +109,19 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   // Commands for RPI
   $scope.takeSinglePicture = () => {
     RPIFactory.takeSinglePicture()
-    .then((msg) => {
-      if (msg) {
-        // Socket real time update once stream has ended
-        loadPage();
+    .then((result) => {
+      if (result.msg) {
+        let refreshTimerId = setInterval(() => {
+          console.log("Test text");
+          GetImageFactory.getUserImageCollection(currentUserEmail)
+          .then((collection) => {
+            if (collection.length > $scope.currentUser.imageCollection.length) {
+              $scope.currentUser.imageCollection = collection;
+              console.log("Test worked");
+              clearInterval(refreshTimerId);
+            }
+          });
+        }, 1000);
       } else {
         console.log("Failed");
       }
@@ -138,4 +166,5 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     ScrollFactory.stopScroll();
   });
 
-});
+
+});// End Ctrl
