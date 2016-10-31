@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, GetVideoFactory, RPIFactory, ScrollFactory) {
+app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, GetVideoFactory, MainDisplayFactory, RPIFactory, ScrollFactory) {
 
   const rightArrow = $('#right-arrow');
   const leftArrow = $('#left-arrow');
@@ -48,29 +48,29 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       // Load the users image collection
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
-        ScrollFactory.sortArrayByTimeStamp(imageCollection);
-        if (imageCollection.msg) {
+        if (imageCollection.msg || imageCollection.length === 0) {
           $scope.imageDisplayStatus = false;
         } else {
+          ScrollFactory.sortArrayByTimeStamp(imageCollection);
           $scope.imageDisplayStatus = true;
           $scope.currentUser.imageCollection =
           imageCollection;
+          $scope.mainDisplayImage = $scope.currentUser.imageCollection[0].imgUrl;
         };
       });
 
       // Load the Users video collection
       GetVideoFactory.getUserVideoCollection(currentUserEmail)
       .then((videoCollection) => {
-        ScrollFactory.sortArrayByTimeStamp(videoCollection);
-        if (videoCollection.msg) {
-          // Show new video message
+        if (videoCollection.msg || videoCollection.length === 0) {
           $scope.videoDisplayStatus = false;
         } else {
+          ScrollFactory.sortArrayByTimeStamp(videoCollection);
           $scope.videoDisplayStatus = true;
+          $scope.mainDisplayVideo = videoCollection[0].videoUrl;
           $scope.currentUser.videoCollection = videoCollection;
         }
       });
-
     });
   };
   loadPage();
@@ -135,11 +135,13 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   $scope.showImagesInDisplay = () => {
     $scope.viewImagesInDisplayStatus = true;
     $scope.viewVideosInDisplayStatus = false;
+    MainDisplayFactory.setMainDisplayMedia($scope);
   };
 
   $scope.showVideosInDisplay = () => {
     $scope.viewImagesInDisplayStatus = false;
     $scope.viewVideosInDisplayStatus = true;
+    MainDisplayFactory.setMainDisplayMedia($scope);
   };
 
 
