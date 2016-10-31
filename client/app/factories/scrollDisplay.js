@@ -2,7 +2,7 @@
 
 app.factory("ScrollFactory", function ($http, $q, $location, APIURL) {
 
-  const imageDisplay = $('#profile-image-display');
+  const imageDisplay = $('.profile-image-display');
 
   const scrollLeft = () => {
     scroll = setInterval(() => {

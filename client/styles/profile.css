@@ -24,7 +24,7 @@ div {
   margin: 1rem auto;
 }
 
-#profile-image-display {
+.profile-image-display {
   border: .25rem solid grey;
   display: flex;
   width: 100vh;
