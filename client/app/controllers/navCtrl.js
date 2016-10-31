@@ -6,10 +6,10 @@ app.controller('NavCtrl', function ($scope, $http, GetUserFactory) {
 
   GetUserFactory.getCurrentUserEmail()
   .then((userId) => {
-    if (userId) {
-      $scope.navBarStatus = true;
-    } else {
+    if (userId.msg) {
       $scope.navBarStatus = false;
+    } else {
+      $scope.navBarStatus = true;
     }
   });
 

@@ -1,7 +1,6 @@
 'use strict';
 
-app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, RPIFactory, ScrollFactory) {
-
+app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditUserFactory, GetImageFactory, GetVideoFactory, RPIFactory, ScrollFactory) {
 
   const rightArrow = $('#right-arrow');
   const leftArrow = $('#left-arrow');
@@ -9,6 +8,10 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   let scroll;
   $scope.userNameStatus = true;
   $scope.friendsStatus = true;
+  $scope.viewImagesInDisplayStatus = true;
+  $scope.viewVideosInDisplayStatus = false;
+  $scope.imageDisplayStatus = true;
+  $scope.videoDisplayStatus = true;
   $scope.currentUser = {};
 
 
@@ -27,6 +30,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     .then((sessionId) => {
       currentUserEmail = sessionId.email;
 
+      // Load the users personal information
       GetUserFactory.getCurrentUserObj(currentUserEmail)
       .then((userObject) => {
         $scope.currentUser = userObject;
@@ -41,10 +45,32 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         }
       });
 
+      // Load the users image collection
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
-        $scope.currentUser.imageCollection = imageCollection;
+        ScrollFactory.sortArrayByTimeStamp(imageCollection);
+        if (imageCollection.msg) {
+          $scope.imageDisplayStatus = false;
+        } else {
+          $scope.imageDisplayStatus = true;
+          $scope.currentUser.imageCollection =
+          imageCollection;
+        };
       });
+
+      // Load the Users video collection
+      GetVideoFactory.getUserVideoCollection(currentUserEmail)
+      .then((videoCollection) => {
+        ScrollFactory.sortArrayByTimeStamp(videoCollection);
+        if (videoCollection.msg) {
+          // Show new video message
+          $scope.videoDisplayStatus = false;
+        } else {
+          $scope.videoDisplayStatus = true;
+          $scope.currentUser.videoCollection = videoCollection;
+        }
+      });
+
     });
   };
   loadPage();
@@ -62,13 +88,60 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     };
   });
 
+
   // Commands for RPI
   $scope.takeSinglePicture = () => {
     RPIFactory.takeSinglePicture()
-    .then((data) => {
-      console.log("Test data", data);
+    .then((result) => {
+      if (result.msg) {
+        let refreshTimerId = setInterval(() => {
+          GetImageFactory.getUserImageCollection(currentUserEmail)
+          .then((collection) => {
+            ScrollFactory.sortArrayByTimeStamp(collection);
+            if (collection.length > $scope.currentUser.imageCollection.length) {
+              $scope.currentUser.imageCollection = collection;
+              clearInterval(refreshTimerId);
+            };
+          });
+        }, 1000);
+      } else {
+        console.log("Failed");
+      }
     });
   };
+
+  $scope.takeStaticVideo = () => {
+    RPIFactory.takeStaticVideo()
+    .then((response) => {
+      if (response.msg) {
+        let refreshTimerId = setInterval(() => {
+          GetVideoFactory.getUserVideoCollection(currentUserEmail)
+          .then((collection) => {
+            ScrollFactory.sortArrayByTimeStamp(collection);
+            if (collection.length > $scope.currentUser.videoCollection.length) {
+              $scope.currentUser.videoCollection = collection;
+              clearInterval(refreshTimerId);
+            };
+          });
+        }, 1000);
+      } else {
+        console.log("Failed");
+      }
+    });
+  };
+
+
+  // Toggle what media is shown in the display container
+  $scope.showImagesInDisplay = () => {
+    $scope.viewImagesInDisplayStatus = true;
+    $scope.viewVideosInDisplayStatus = false;
+  };
+
+  $scope.showVideosInDisplay = () => {
+    $scope.viewImagesInDisplayStatus = false;
+    $scope.viewVideosInDisplayStatus = true;
+  };
+
 
   // Functionality for the image display hover scroll
   rightArrow.hover(() => {
@@ -83,4 +156,5 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
     ScrollFactory.stopScroll();
   });
 
-});
+
+});// End Ctrl

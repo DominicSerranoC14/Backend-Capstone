@@ -2,6 +2,10 @@ div {
   padding: 0;
 }
 
+.profile-container {
+  width: 90vw;
+}
+
 #profile-console {
   height: 50vh;
   border: .5rem solid grey;
@@ -15,7 +19,7 @@ div {
 }
 
 #profile-display-container {
-  height: 20vh;
+  height: 26vh;
   display: flex;
   margin: 1rem auto;
 }
@@ -23,16 +27,29 @@ div {
 #profile-image-display {
   border: .25rem solid grey;
   display: flex;
-  width: 80vh;
+  width: 100vh;
   align-items: center;
   overflow-x: scroll;
 }
 
 .profile-display-image {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 150px;
   margin: .5rem;
   border-radius: 10%;
+}
+
+.profile-display-video {
+  width: 200px;
+  height: 200px;
+  margin: .5rem;
+  border-radius: 15%;
+}
+
+.toggle-media-view {
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
 .icon-container {

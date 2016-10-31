@@ -10,14 +10,14 @@ const createNewImage = (req, res, err) => {
   uploadPhoto(req, res);
 
   req.on('end', () => {
-    console.log(cyan(Date().slice(16, -15)) ,'Stream ended')
+    console.log(cyan(Date().slice(16, -15)) ,'Stream ended');
   });
 };
 
 
 const deleteSpecificImage = ({ params: { field, id }}, res) => {
   Image
-  .remove({ _id: id})
+  .remove({ field: id})
   .then((response) => {
     res.send({ msg: `Image id ${id} was deleted`});
   })
