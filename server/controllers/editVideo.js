@@ -1,6 +1,6 @@
 'use strict';
 
-const { createWriteStream } = require('fs');
+const { createWriteStream, readdirSync, unlinkSync } = require('fs');
 const { red, cyan } = require('chalk');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
@@ -16,7 +16,14 @@ const receiveVideoStream = (req, res) => {
   req.pipe(createWriteStream(`./server/videoFiles/video${randomNum}.h264`));
 
   req.on('end', () => {
-    exec(`ffmpeg -r 30 -i server/videoFiles/video${randomNum}.h264 -vcodec copy server/videoFiles/video${randomNum}.mp4`);
+    exec(`ffmpeg -r 30 -i server/videoFiles/video${randomNum}.h264 -vcodec copy server/videoFiles/video${randomNum}.mp4`, () => {
+      // Unlink each h264 file after it is converted
+      readdirSync('server/videoFiles').forEach((each) => {
+        if ( each.split('.')[1] === 'h264' ) {
+          unlinkSync(`server/videoFiles/${each}`);
+        }
+      });
+    });
     console.log(cyan(Date().slice(16, -15)), 'File video.h264 endcoded into video.mp4');
     console.log(cyan(Date().slice(16, -15)), 'Upload done');
 
