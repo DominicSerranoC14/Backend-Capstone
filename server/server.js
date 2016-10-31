@@ -6,7 +6,6 @@ const socketio = require('socket.io');
 const { json } = require('body-parser');
 const app = express();
 const server = Server(app);
-const io = socketio(server);
 const PORT = process.env.PORT || 3000;
 const DB = require('./database/database.js');
 const session = require('express-session');
@@ -72,10 +71,4 @@ app.use((
 DB.connect()
 .then(() => {
   server.listen(PORT, () => console.log(cyan(Date().slice(16, -15)), `Listening on port: ${PORT}`));
-});
-
-
-// Socket io interaction
-io.on('connect', socket => {
-  console.log("Test connected");
 });

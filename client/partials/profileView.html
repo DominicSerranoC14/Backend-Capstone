@@ -28,7 +28,7 @@
     <div class="col s9">
       <div id="profile-console" class="">
         <div class="row">
-          <a ng-click="" class="waves-effect btn col s8 indigo offset-s2">
+          <a ng-click="takeSinglePicture()" class="waves-effect btn col s8 indigo offset-s2">
           New Picture</a>
         </div>
         <div class="row">
@@ -44,20 +44,8 @@
           <i id="left-arrow" class="medium material-icons">keyboard_arrow_left</i>
         </div>
         <div id="profile-image-display" class="">
-          <div class="col">
-            <img class="profile-display-image" src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" alt="" />
-          </div>
-          <div class="col">
-            <img class="profile-display-image" src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" alt="" />
-          </div>
-          <div class="col">
-            <img class="profile-display-image" src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" alt="" />
-          </div>
-          <div class="col">
-            <img class="profile-display-image" src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" alt="" />
-          </div>
-          <div class="col">
-            <img class="profile-display-image" src="http://tctechcrunch2011.files.wordpress.com/2008/04/linux-penguin-small.png" alt="" />
+          <div class="col" ng-repeat="each in currentUser.imageCollection">
+            <img class="profile-display-image" ng-src="{{each.imgUrl}}" alt="" />
           </div>
         </div>
         <div class="icon-container col">
