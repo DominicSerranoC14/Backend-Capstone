@@ -67,7 +67,6 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         } else {
           ScrollFactory.sortArrayByTimeStamp(videoCollection);
           $scope.videoDisplayStatus = true;
-          $scope.mainDisplayVideo = videoCollection[0].videoUrl;
           $scope.currentUser.videoCollection = videoCollection;
         }
       });
@@ -135,13 +134,17 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   $scope.showImagesInDisplay = () => {
     $scope.viewImagesInDisplayStatus = true;
     $scope.viewVideosInDisplayStatus = false;
-    MainDisplayFactory.setMainDisplayMedia($scope);
+    if ($scope.currentUser.imageCollection) {
+      MainDisplayFactory.setMainDisplayMedia($scope);
+    };
   };
 
   $scope.showVideosInDisplay = () => {
     $scope.viewImagesInDisplayStatus = false;
     $scope.viewVideosInDisplayStatus = true;
-    MainDisplayFactory.setMainDisplayMedia($scope);
+    if ($scope.currentUser.videoCollection) {
+      MainDisplayFactory.setMainDisplayMedia($scope);
+    };
   };
 
 
