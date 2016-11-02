@@ -27,16 +27,32 @@
 
     <div class="col s9">
       <div id="profile-console" class="">
-        <div class="row">
-          <a ng-click="takeSinglePicture()" class="waves-effect btn col s8 indigo offset-s2">
-          New Picture</a>
+        <div class="button-console">
+          <div class="">
+            <a ng-click="takeSinglePicture()" class="waves-effect btn indigo row s12">
+            New Picture</a>
+          </div>
+          <div class="">
+            <a ng-click="takeStaticVideo()" class="waves-effect btn indigo row s12">New Video</a>
+          </div>
+          <div class="">
+            <a ng-click="" class="waves-effect btn indigo row s12">New Post</a>
+          </div>
+          <div class="">
+            <a ng-click="" class="waves-effect btn indigo row s12">Live Feed</a>
+          </div>
         </div>
-        <div class="row">
-          <a ng-click="takeStaticVideo()" class="waves-effect btn col s8 indigo offset-s2">New Video</a>
+
+        <div ng-show="viewImagesInDisplayStatus">
+          <img ng-show="imageDisplayStatus" class="main-display-image" ng-src="{{mainDisplayImage}}"/>
         </div>
-        <div class="row">
-          <a ng-click="" class="waves-effect btn col s8 indigo offset-s2">New Post</a>
+
+        <div ng-show="viewVideosInDisplayStatus">
+          <video width="450" height="340" ng-show="videoDisplayStatus" class="" controls>
+            <source ng-src="{{mainDisplayVideo}}" />
+          </video>
         </div>
+
       </div>
 
       <div class="toggle-media-view row s9">
@@ -53,7 +69,7 @@
           <i id="left-arrow" class="medium material-icons">keyboard_arrow_left</i>
         </div>
 
-        <div ng-show="viewImagesInDisplayStatus" id="profile-image-display" class="">
+        <div ng-show="viewImagesInDisplayStatus" class="profile-image-display">
           <h5 ng-hide="imageDisplayStatus" class="row col s12 center">
             You currently have no images
           </h5>
@@ -62,7 +78,7 @@
           </div>
         </div>
 
-        <div ng-show="viewVideosInDisplayStatus" id="profile-image-display" class="">
+        <div ng-show="viewVideosInDisplayStatus" class="profile-image-display">
           <h5 ng-hide="videoDisplayStatus" class="row col s12 center">
             You currently have no videos
           </h5>
