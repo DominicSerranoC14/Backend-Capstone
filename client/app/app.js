@@ -1,6 +1,6 @@
 'use strict';
 const app = angular.module('BECAP', ['ngRoute'])
-.constant('APIURL', "http://localhost:3000");
+.constant('APIURL', "https://spyonfido.herokuapp.com/");
 
 app.config(($routeProvider, $locationProvider) => {
 
