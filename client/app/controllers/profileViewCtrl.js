@@ -27,9 +27,9 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
 
   // When a image or video is selected, set that media url to the main media display position
   $scope.setToMainMedia = (mediaObj) => {
-    if (mediaObj.imageUrl) {
+    if (mediaObj.imgUrl) {
       $scope.mainDisplayImage = mediaObj.imgUrl;
-    } else {
+    } else if (mediaObj.videoUrl) {
       $scope.mainDisplayVideo = mediaObj.videoUrl;
     }
   };
@@ -85,7 +85,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         if (videoCollection.msg || videoCollection.length === 0) {
           $scope.videoDisplayStatus = false;
         } else {
-          let test = ScrollFactory.sortArrayByTimeStamp(videoCollection);
+          ScrollFactory.sortArrayByTimeStamp(videoCollection);
           $scope.videoDisplayStatus = true;
           $scope.currentUser.videoCollection = videoCollection;
           $scope.mainDisplayVideo = $scope.currentUser.videoCollection[0].videoUrl;
@@ -117,8 +117,8 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         let refreshTimerId = setInterval(() => {
           GetImageFactory.getUserImageCollection(currentUserEmail)
           .then((collection) => {
-            ScrollFactory.sortArrayByTimeStamp(collection);
             if (collection.length > $scope.currentUser.imageCollection.length) {
+              ScrollFactory.sortArrayByTimeStamp(collection);
               $scope.currentUser.imageCollection = collection;
               clearInterval(refreshTimerId);
             };
@@ -138,8 +138,8 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         let refreshTimerId = setInterval(() => {
           GetVideoFactory.getUserVideoCollection(currentUserEmail)
           .then((collection) => {
-            ScrollFactory.sortArrayByTimeStamp(collection);
             if (collection.length > $scope.currentUser.videoCollection.length) {
+              ScrollFactory.sortArrayByTimeStamp(collection);
               $scope.currentUser.videoCollection = collection;
               clearInterval(refreshTimerId);
             };

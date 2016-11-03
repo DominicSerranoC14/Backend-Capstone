@@ -1,7 +1,7 @@
 'use strict';
 
 const AWS = require('aws-sdk');
-// const AWS_CREDS = require('./aws_creds.json');
+const AWS_CREDS = require('./aws_creds.json');
 const Image = require('../models/Image.js');
 const { red, cyan } = require('chalk');
 /////////////////////////////////////////
