@@ -2,7 +2,11 @@
 #### Backend Capstone project for Nashville Software School
 
 ## About
-Spy On Fido is a web app designed for busy pet owners. It allows for the user to log in with a user facing Angular interface and take and view images and videos from a remote camera, specifically a camera connected to a Raspberry Pi .
+Spy On Fido is a web application designed for busy pet owners to supervise their pets while away at work. Users are able to log in and view saved images and videos that were captured using their remote camera. The user facing Angular interface also allows control of when a pet owner wants to take a image or video, with a click of a button.
+
+This app was made with the MEAN stack (Mongo, Express, Angular and Nodejs), and incorporates a RESTful API, an Angular user interface, and a Express server running on a Raspberry Pi.
+
+Check out the Raspberry Pi Server repo [here](https://github.com/DominicSerranoC14/RPI-Image-Uploader).
 
 ## Technologies Used
 ```
@@ -26,5 +30,5 @@ Server Side Technology:
 
 
 ## Project Architecture
-#### Project Structure
-![alt text]("screenshot1.png")
+#### Structure
+![](https://s3.us-east-2.amazonaws.com/spyonfido/screenshot1.png)
