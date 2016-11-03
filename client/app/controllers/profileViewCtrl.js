@@ -27,9 +27,9 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
 
   // When a image or video is selected, set that media url to the main media display position
   $scope.setToMainMedia = (mediaObj) => {
-    if (mediaObj.imageUrl) {
+    if (mediaObj.imgUrl) {
       $scope.mainDisplayImage = mediaObj.imgUrl;
-    } else {
+    } else if (mediaObj.videoUrl) {
       $scope.mainDisplayVideo = mediaObj.videoUrl;
     }
   };
@@ -69,6 +69,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
         if (imageCollection.msg || imageCollection.length === 0) {
+          $scope.currentUser.imageCollection = null;
           $scope.imageDisplayStatus = false;
         } else {
           ScrollFactory.sortArrayByTimeStamp(imageCollection);
@@ -84,8 +85,9 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       .then((videoCollection) => {
         if (videoCollection.msg || videoCollection.length === 0) {
           $scope.videoDisplayStatus = false;
+          $scope.currentUser.videoCollection = null;
         } else {
-          let test = ScrollFactory.sortArrayByTimeStamp(videoCollection);
+          ScrollFactory.sortArrayByTimeStamp(videoCollection);
           $scope.videoDisplayStatus = true;
           $scope.currentUser.videoCollection = videoCollection;
           $scope.mainDisplayVideo = $scope.currentUser.videoCollection[0].videoUrl;
@@ -117,8 +119,15 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         let refreshTimerId = setInterval(() => {
           GetImageFactory.getUserImageCollection(currentUserEmail)
           .then((collection) => {
-            ScrollFactory.sortArrayByTimeStamp(collection);
-            if (collection.length > $scope.currentUser.imageCollection.length) {
+            if (collection.msg) {
+              return
+            } else if (collection.length === 1 && $scope.currentUser.imageCollection === null) {
+              $scope.currentUser.imageCollection = collection;
+              $scope.imageDisplayStatus = true;
+              MainDisplayFactory.setMainDisplayMedia($scope);
+              clearInterval(refreshTimerId);
+            } else if (collection.length > $scope.currentUser.imageCollection.length) {
+              ScrollFactory.sortArrayByTimeStamp(collection);
               $scope.currentUser.imageCollection = collection;
               clearInterval(refreshTimerId);
             };
@@ -138,8 +147,14 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         let refreshTimerId = setInterval(() => {
           GetVideoFactory.getUserVideoCollection(currentUserEmail)
           .then((collection) => {
-            ScrollFactory.sortArrayByTimeStamp(collection);
-            if (collection.length > $scope.currentUser.videoCollection.length) {
+            if (collection.msg) {
+              return
+            } else if (collection.length === 1 && $scope.currentUser.videoCollection === null) {
+              $scope.currentUser.videoCollection = collection;
+              $scope.videoDisplayStatus = true;
+              clearInterval(refreshTimerId);
+            } else if (collection.length > $scope.currentUser.videoCollection.length) {
+              ScrollFactory.sortArrayByTimeStamp(collection);
               $scope.currentUser.videoCollection = collection;
               clearInterval(refreshTimerId);
             };
