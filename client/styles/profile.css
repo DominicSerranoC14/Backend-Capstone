@@ -19,7 +19,7 @@ div {
 }
 
 #profile-display-container {
-  height: 26vh;
+  height: 28vh;
   display: flex;
   margin: 1rem auto;
 }
@@ -29,6 +29,10 @@ div {
   height: 300px;
   margin: 1.5rem 3rem 1.5rem 0;
   border-radius: 10%;
+}
+
+.main-display-video {
+  margin-right: 6.5rem;
 }
 
 .button-console {
@@ -59,6 +63,10 @@ div {
   height: 200px;
   margin: .5rem;
   border-radius: 15%;
+}
+
+.hover-media {
+  box-shadow: 2px 2px 2px 2px black;
 }
 
 .toggle-media-view {

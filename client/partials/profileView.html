@@ -36,9 +36,6 @@
             <a ng-click="takeStaticVideo()" class="waves-effect btn indigo row s12">New Video</a>
           </div>
           <div class="">
-            <a ng-click="" class="waves-effect btn indigo row s12">New Post</a>
-          </div>
-          <div class="">
             <a ng-click="" class="waves-effect btn indigo row s12">Live Feed</a>
           </div>
         </div>
@@ -48,9 +45,7 @@
         </div>
 
         <div ng-show="viewVideosInDisplayStatus">
-          <video width="450" height="340" ng-show="videoDisplayStatus" class="" controls>
-            <source ng-src="{{mainDisplayVideo}}" />
-          </video>
+          <video class="main-display-video" ng-src="{{mainDisplayVideo}}" width="450" height="340" ng-show="videoDisplayStatus" controls>
         </div>
 
       </div>
@@ -74,7 +69,8 @@
             You currently have no images
           </h5>
           <div ng-show="imageDisplayStatus" class="col" ng-repeat="each in currentUser.imageCollection">
-            <img class="profile-display-image" ng-src="{{each.imgUrl}}" alt="" />
+            <img
+            ng-mouseover="mediaHover($event)" ng-click="setToMainMedia(each)"  class="profile-display-image" ng-src="{{each.imgUrl}}" alt="" />
           </div>
         </div>
 
@@ -83,7 +79,7 @@
             You currently have no videos
           </h5>
           <div ng-show="videoDisplayStatus" class="col" ng-repeat="each in currentUser.videoCollection">
-            <video class="profile-display-video" width="560" height="340" controls>
+            <video ng-mouseover="mediaHover($event)" ng-click="setToMainMedia(each)" class="profile-display-video" controls>
               <source ng-src="{{each.videoUrl}}" />
             </video>
           </div>

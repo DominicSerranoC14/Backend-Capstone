@@ -15,6 +15,26 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
   $scope.currentUser = {};
 
 
+  // Add a box shadow to the hovered over media
+  $scope.mediaHover = (e) => {
+    $(e.target).hover(() => {
+      $(e.target).addClass('hover-media');
+    }, () => {
+      $(e.target).removeClass('hover-media');
+    });
+  };
+
+
+  // When a image or video is selected, set that media url to the main media display position
+  $scope.setToMainMedia = (mediaObj) => {
+    if (mediaObj.imageUrl) {
+      $scope.mainDisplayImage = mediaObj.imgUrl;
+    } else {
+      $scope.mainDisplayVideo = mediaObj.videoUrl;
+    }
+  };
+
+
   const determineFriends = () => {
     if ($scope.currentUser.profileFriends.length === 0) {
       $scope.friendsStatus = true;
@@ -65,10 +85,11 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         if (videoCollection.msg || videoCollection.length === 0) {
           $scope.videoDisplayStatus = false;
         } else {
-          ScrollFactory.sortArrayByTimeStamp(videoCollection);
+          let test = ScrollFactory.sortArrayByTimeStamp(videoCollection);
           $scope.videoDisplayStatus = true;
           $scope.currentUser.videoCollection = videoCollection;
-        }
+          $scope.mainDisplayVideo = $scope.currentUser.videoCollection[0].videoUrl;
+        };
       });
     });
   };
@@ -103,6 +124,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
             };
           });
         }, 1000);
+        $scope.showImagesInDisplay();
       } else {
         console.log("Failed");
       }
@@ -123,6 +145,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
             };
           });
         }, 1000);
+        $scope.showVideosInDisplay();
       } else {
         console.log("Failed");
       }
