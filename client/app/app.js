@@ -1,6 +1,6 @@
 'use strict';
 const app = angular.module('BECAP', ['ngRoute'])
-.constant('APIURL', "https://spyonfido.herokuapp.com/");
+.constant('APIURL', "https://spyonfido.herokuapp.com");
 
 app.config(($routeProvider, $locationProvider) => {
 
@@ -8,10 +8,6 @@ app.config(($routeProvider, $locationProvider) => {
     .when('/', {
       controller: 'splashCtrl',
       templateUrl: 'partials/splash.html'
-    })
-    .when('/feed', {
-      controller: 'postFeedCtrl',
-      templateUrl: 'partials/postFeed.html'
     })
     .when('/profile', {
       controller: 'profileViewCtrl',

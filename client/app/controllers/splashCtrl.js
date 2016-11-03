@@ -24,7 +24,7 @@ app.controller('splashCtrl', function ($scope, $http, $location, AuthFactory) {
     AuthFactory.postLoginCredentials($scope.loginObj)
     .then((userObj) => {
       if (userObj._id) {
-        $location.path("/feed");
+        $location.path("/profile");
       } else {
         $scope.errMsg = userObj.msg;
         showLoginErrorMsg();
