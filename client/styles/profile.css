@@ -25,14 +25,16 @@ div {
 }
 
 .main-display-image {
-  width: 400px;
-  height: 300px;
-  margin: 1.5rem 3rem 1.5rem 0;
+  width: 550px;
+  height: 350px;
+  margin: 1.5rem 5.5rem 2rem 0;
   border-radius: 10%;
 }
 
 .main-display-video {
-  margin-right: 6.5rem;
+  margin-right: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .button-console {
