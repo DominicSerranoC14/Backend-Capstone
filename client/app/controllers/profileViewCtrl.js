@@ -69,6 +69,7 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
       GetImageFactory.getUserImageCollection(currentUserEmail)
       .then((imageCollection) => {
         if (imageCollection.msg || imageCollection.length === 0) {
+          $scope.currentUser.imageCollection = null;
           $scope.imageDisplayStatus = false;
         } else {
           ScrollFactory.sortArrayByTimeStamp(imageCollection);
@@ -117,7 +118,15 @@ app.controller('profileViewCtrl', function ($scope, $http, GetUserFactory, EditU
         let refreshTimerId = setInterval(() => {
           GetImageFactory.getUserImageCollection(currentUserEmail)
           .then((collection) => {
-            if (collection.length > $scope.currentUser.imageCollection.length) {
+            console.log("Test collection", collection);
+            if (collection.msg) {
+              return
+            } else if (collection.length === 1 && $scope.currentUser.imageCollection === null) {
+              $scope.currentUser.imageCollection = collection;
+              $scope.imageDisplayStatus = true;
+              MainDisplayFactory.setMainDisplayMedia($scope);
+              clearInterval(refreshTimerId);
+            } else if (collection.length > $scope.currentUser.imageCollection.length) {
               ScrollFactory.sortArrayByTimeStamp(collection);
               $scope.currentUser.imageCollection = collection;
               clearInterval(refreshTimerId);
