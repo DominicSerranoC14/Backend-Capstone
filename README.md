@@ -23,3 +23,8 @@ Server Side Technology:
 - Request v2.76.0 (npm module)
 - Heroku-cli v5.4.8
 ```
+
+
+## Project Architecture
+#### Project Structure
+![alt text]("screenshot1.png")
