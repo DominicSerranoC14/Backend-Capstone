@@ -31,4 +31,4 @@ Server Side Technology:
 
 ## Project Architecture
 #### Structure
-![](https://s3.us-east-2.amazonaws.com/spyonfido/screenshot1.png)
+![](https://s3.us-east-2.amazonaws.com/spyonfido/Screen+Shot+2016-11-03+at+5.42.49+PM.png)
